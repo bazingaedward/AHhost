@@ -1,0 +1,10 @@
+#!/bin/bash
+
+BASEDIR=$(dirname $(readlink -f "$0"))
+
+# crontab -r &> /dev/null
+nginx -s stop &> /dev/null
+# killall5 -9 uwsgi &> /dev/null
+killall uwsgi &> /dev/null
+
+printf "\n========================\n Web Server is stopped.\n========================\n"

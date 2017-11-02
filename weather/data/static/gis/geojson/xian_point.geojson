@@ -1,0 +1,29 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "NAME": "井陉县" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.13887948, 38.03144202 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "深泽县" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 115.19477622, 38.183461155 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "无极县" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.97042908, 38.178575145 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "栾城县" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.6425508, 37.899671535 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "长安区" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.53361444, 38.035898325 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "桥东区" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.49880964, 38.046804795 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "裕华区" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.52528242, 38.005496685 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "鹿泉市" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.30722898, 38.085159915 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "辛集市" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 115.21182024, 37.94243373 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "灵寿县" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.37632324, 38.30785785 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "井陉矿区" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.05579166, 38.064192975 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "新乐市" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.677910899999972, 38.342837115 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "高邑县" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.605720639999987, 37.614372165 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "行唐县" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.54702894, 38.437975755 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "藁城市" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.840906839999988, 38.021102415 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "桥西区" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.454836179999987, 38.00327634 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "新华区" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.4569177, 38.050121205 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "平山县" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.17969124, 38.259271035 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "赵县" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.770210760000012, 37.75560354 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "正定县" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.565132439999985, 38.14569351 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "赞皇县" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.37966422, 37.664908065 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "元氏县" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 114.51954276, 37.765803645 ] ] } },
+{ "type": "Feature", "properties": { "NAME": "晋州市" }, "geometry": { "type": "MultiPoint", "coordinates": [ [ 115.03792512, 38.03277717 ] ] } }
+]
+}

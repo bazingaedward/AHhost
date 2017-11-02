@@ -1,0 +1,60 @@
+/* overridden openlayer default css*/
+.ol-scale-line {
+  right: 8px;
+  left: unset;
+}
+
+＃map_info {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: column;
+}
+
+.banner .navbar {
+  margin-bottom: 0;
+}
+
+#map_info .navbar {
+  margin-bottom: 0;
+}
+
+.container {
+  padding-left: 0;
+  padding-right: 0;
+}
+/* modal css*/
+#data_modal {
+  width: 100%;
+  height: 90%;
+  background-color: white;
+  top: 5%;
+}
+
+#datatable {
+  padding: 0 1%;
+}
+
+#img-logo {
+  width: 25px;
+  display: inline-block;
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
+
+.footer {
+  background-image: linear-gradient(to bottom,#fff 0,#f8f8f8 100%);
+  height: 40px;
+  padding-top:10px;
+}
+.content {
+  background-image: linear-gradient(to right,#fff 0,#ddd 30%);
+}
+
+.thumbnail {
+  margin-bottom: 40px;
+}

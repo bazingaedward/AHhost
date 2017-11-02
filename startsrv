@@ -1,0 +1,12 @@
+#!/bin/bash
+
+BASEDIR=$(dirname $(readlink -f "$0"))
+PRJNAME=$(basename $(dirname $(find $BASEDIR -name settings.py)))
+
+$BASEDIR/stopsrv &> /dev/null
+# cp -r ahhost/static/ahhost/ckdev static/ahhost
+# crontab $BASEDIR/tasks.cron &> /dev/null
+nginx -c $BASEDIR/nginx.conf &> /dev/null
+uwsgi --set-ph dstdir=$BASEDIR --set-ph prjname=$PRJNAME --ini $BASEDIR/uwsgi.ini &> /dev/null
+
+printf "\n========================\n Web Server is started.\n========================\n"

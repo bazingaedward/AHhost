@@ -1,0 +1,56 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>石家庄实时天气</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'weather/jquery-easyui-1.5.2/themes/metro/easyui.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'weather/jquery-easyui-1.5.2/themes/mobile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'weather/jquery-easyui-1.5.2/themes/icon.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'weather/openlayers-4.2.0/ol.css' %}">
+
+    {% if DEBUG %}
+        <script type="text/javascript" src="{% static 'weather/jquery-easyui-1.5.2/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'weather/jquery-easyui-1.5.2/jquery.easyui.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'weather/jquery-easyui-1.5.2/jquery.easyui.mobile.js' %}"></script>
+        <script type="text/javascript" src="{% static 'weather/openlayers-4.2.0/ol.js' %}"></script>
+        <script type="text/javascript" src="{% static 'weather/ckdev/platform.js' %}"></script>
+    {% else %}
+        <script type="text/javascript" src="{% static 'weather/platform.js' %}"></script>
+    {% endif %}
+    <style>
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+        #timeinfo {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-weight: bold;
+        }
+        #layer_switch {
+          text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="easyui-navpanel" style="background-color: #f3f3f3">
+    <div id="layer_switch">
+      <input class="easyui-switchbutton" id="sb">
+    </div>
+    <div id="map"></div>
+    <footer>
+        <div id="navbar" class="m-buttongroup m-buttongroup-justified" style="width:100%">
+            <a href="#" class="easyui-linkbutton" data-options="size:'large',plain:true" data-button="1">气温(℃)</a>
+            <a href="#" class="easyui-linkbutton" data-options="size:'large',plain:true" data-button="2">相对湿度(%)</a>
+            <a href="#" class="easyui-linkbutton" data-options="size:'large',plain:true" data-button="3">降水(mm)</a>
+            <a href="#" class="easyui-linkbutton" data-options="size:'large',plain:true" data-button="4">能见度(km)</a>
+            <a href="#" class="easyui-linkbutton" data-options="size:'large',plain:true" data-button="5">风速(m/s)</a>
+        </div>
+    </footer>
+    <div id="timeinfo">石家庄实时天气</div>
+</div>
+</body>
+</html>

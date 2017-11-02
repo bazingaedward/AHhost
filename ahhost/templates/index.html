@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+
+{% block static%}
+	{% include "block-static.html" %}
+{% endblock%}
+
+{% block title %}
+	安徽省减排评估管理系统
+{% endblock title %}
+
+{% block banner%}
+	{% include "block-banner.html" %}
+{% endblock %}
+
+{% block left_sidebar%}
+	{% include "block-left-sidebar-1.html" %}
+{% endblock %}
+
+{% block map%}
+	<div id="map"></div>
+{% endblock %}
+
+{% block info%}
+	{% include "block-info.html" %}
+{% endblock %}
+
+{% block dialog%}
+	{% include "block-dialog.html" %}
+{% endblock %}

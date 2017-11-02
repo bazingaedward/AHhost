@@ -1,0 +1,29 @@
+{% load cms_tags menu_tags sekizai_tags %}
+<!doctype html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock title %}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        {% block static%}{% endblock %}
+    </head>
+    <body>
+      {% block content %}{% endblock %}
+      <div class="container-fluid">
+        <section class="row banner">
+          {% block banner%}{% endblock %}
+        </section>
+        <div class="row content">
+          <div class="col-md-2 left-side">
+            {% block left_sidebar%}{% endblock %}
+          </div>
+          <div class="col-md-10 right-side">
+              {% block map%}{% endblock %}
+          </div>
+        </div>
+        <div class="row footer">
+          {% block info%}{% endblock %}
+        </div>
+      </div>
+    </body>
+    {% block dialog%}{% endblock %}
+</html>
