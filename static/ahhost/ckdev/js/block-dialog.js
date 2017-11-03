@@ -73,17 +73,27 @@ $(function(){
     var pollutionType = $('#pollutionTypeSelect').val();
     var pollutionSum = $('#pollutionSumValue').val();
 
+    if(!pollutionSum){
+      alert("区域排放总量必须输入!!!");
+      return;
+    }
+
+    $('#raster_modal .modal_info').empty();
+    $('#raster_modal .modal_info').append("<div class=\"alert alert-info\" role=\"alert\">正在处理，请稍后...</div>");
     $.ajax({
       url: '/form/raster',
       type: 'POST',
       data: {
-        'Area': rasterArea,
-        'st'  : statisticType,
-        'resolution': gridResolution,
-        'type': pollutionType,
-        'sum': pollutionSum
+        'Area': rasterArea, //'AH'
+        'st'  : statisticType,//'Population'
+        'resolution': gridResolution,//'10'
+        'type': pollutionType,//'so2'
+        'sum': pollutionSum //'100'
       },
       success: function(data){
+        $('#raster_modal .modal_info').empty();
+        $('#raster_modal .modal_info').append("<div class=\"alert alert-success\" role=\"alert\">计算完成，导出文件！</div>");
+        window.open('media/netcdf4/data.nc');
         console.log(data);
       },
       fail: function(response){

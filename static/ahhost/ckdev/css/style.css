@@ -58,3 +58,9 @@
 .thumbnail {
   margin-bottom: 40px;
 }
+
+.copyright {
+  float: right;
+  color: grey;
+  font-size: small;
+}

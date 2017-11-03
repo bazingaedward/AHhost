@@ -106,27 +106,31 @@ $(function() {
 
       }),
       style: function (feature, resolution) {
+        var step = feature.get('max')/5.0;
         var color = [255,255,255,0.1];
 
         var x = feature.get('sum');
         switch(true){
-          case (x <= 0.01):
-            color = [255,255,255,0.1];
+          case (x == 0):
+            color = [255,255,255,0];
             break;
-          case (x > 0.01 && x <= 0.04):
-            color = [255,228, 196, 0.6];
+          case (x > 0 &&x <= step):
+            color = [175,238,238,0.8];
             break;
-          case (x > 0.04 && x <= 0.08):
-            color = [205, 133, 63, 0.6];
+          case (x > step && x <= 2*step):
+            color = [135,206,250, 0.8];
             break;
-          case (x > 0.08 && x <= 0.12):
-            color = [210, 105, 30, 0.6];
+          case (x > 2*step && x <= 3*step):
+            color = [100,149,237, 0.8];
             break;
-          case (x > 0.12 && x <= 0.16):
-            color = [165, 42, 42, 0.6];
+          case (x > 3*step && x <= 4*step):
+            color = [30,144,255, 0.8];
             break;
-          case (x > 0.16):
-            color = [139, 26, 26, 0.6];
+          case (x > 4*step && x <= 5*step):
+            color = [0,0,205, 0.8];
+            break;
+          case (x > 5*step):
+            color = [0,0,128, 0.8];
             break;
           default:
             alert('数据颜色渲染错误');
