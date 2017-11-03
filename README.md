@@ -1,11 +1,11 @@
 # AHhost: a Django-based WebGIS web-App for data Visualization and Manipulation  
 
 # Dependency:
+- JQuery
 - Openlayers4
-- datatable.js
+- Datatable.js
 - Bootstrap3.3
 - Webpack
-- JQuery
 - Docker
 
 # Django installed apps
