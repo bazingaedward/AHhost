@@ -30,7 +30,7 @@ class ShapeFileHandler:
         self.w = sf.Writer(shapeType=sf.POLYGON)
         self.w.autoBalance = 1
 
-    def export(self, filename="ah_grid"):
+    def export(self, filename="grid"):
         "Calculate grid polygon and save to file"
         nx = int(math.ceil(abs(self.latlon[3] - self.latlon[1])/self.resolution))
         ny = int(math.ceil(abs(self.latlon[2] - self.latlon[0])/self.resolution))
@@ -133,10 +133,13 @@ class RasterHandler:
         "归一化数据"
         # sum
         total = 0.0
+        maximum = 0.0
         for idx,item in enumerate(self.stats):
             data = item['properties']['sum']
             if data:
                 total += float(data)
+                if maximum < data:
+                    maximum = data
             else:
                 self.stats[idx]['properties']['sum'] = 0
         # normalizing
@@ -144,6 +147,7 @@ class RasterHandler:
             data = item['properties']['sum']
             if data:
                 self.stats[idx]['properties']['sum'] /= total
+            self.stats[idx]['properties']['max'] = maximum / total
 
         return self.stats
 
