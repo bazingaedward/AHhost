@@ -20,6 +20,7 @@ from . import views
 
 urlpatterns = i18n_patterns(
     # url(r'^filer/', include('filer.urls')),
+
     url(r'^admin/', include(admin.site.urls)),
     url(r'^data/load$', views.data_load),
     url(r'^data/import$', views.data_import),

@@ -7,8 +7,8 @@ class GriddingTestCase(TestCase):
         # sfh = ShapeFileHandler([3137847.7813,845398.494453,3807148.73217,1425996.90967], \
         #     resolution=100000)
         sfh = ShapeFileHandler([28.949517145902025,112.7214002962958,35.06114891777644,121.73919504342172], \
-            resolution=1)
-        sfh.export()
+            resolution=0.1)
+        sfh.export('media/shapefiles/grid')
 
     def test_raster_handler(self):
         vector = 'media/shapefiles/grid.shp'
@@ -21,7 +21,7 @@ class GriddingTestCase(TestCase):
 
     def test_nc_handler(self):
         nh = NCHandler(self.test_raster_handler(), 'media/netcdf4/data.nc')
-        resolution = float(1)/100.0
+        resolution = float(10)/100.0
         pollution = {
             'name': 'SO2',
             'quantity': float(100)
