@@ -8,6 +8,7 @@
 $(function(){
     $('#datatable').DataTable({
       ajax: '/data/load',
+      deferRender: true,
       "dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
               "<'row'<'col-sm-12'tr>>" +
               "<'row'<'col-sm-5'i><'col-sm-7'p>>",
@@ -31,11 +32,22 @@ $(function(){
         },
         {
           extend: 'selectedSingle',
-          text: '编辑'
+          text: '编辑',
+          action : function(e, dt, node, config){
+            console.log(this.row({selected: true}).data().toArray());
+          }
         },
         {
           extend: 'selected',
           text: '删除'
+        },
+        {
+          extend: 'selectAll',
+          text: '全选',
+        },
+        {
+          extend: 'selectNone',
+          text: '取消选择'
         },
         {
           extend: 'csv',
