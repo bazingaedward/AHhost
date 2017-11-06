@@ -27,19 +27,35 @@ $(function(){
         {
             text: '新增',
             action: function ( e, dt, node, config ) {
-                dt.ajax.reload();
+              $('#dt_editor_modal').modal('show');
+                // this.row.add([
+                //   '123',
+                //   '123',
+                //   '123',
+                //   '123',
+                //   '123',
+                //   '123',
+                //   '123',
+                //   '123',
+                //   '123',
+                //   '123',
+                //   '123'
+                // ]).draw(false);
             }
         },
         {
           extend: 'selectedSingle',
           text: '编辑',
           action : function(e, dt, node, config){
-            console.log(this.row({selected: true}).data().toArray());
+            console.log(this.row({selected: true}).data());
           }
         },
         {
           extend: 'selected',
-          text: '删除'
+          text: '删除',
+          action: function(e, dt, node, config){
+            this.row({selected: true}).remove().draw();
+          }
         },
         {
           extend: 'selectAll',
