@@ -6,75 +6,76 @@
 */
 
 $(function(){
-    $('#datatable').DataTable({
-      ajax: '/data/load',
-      deferRender: true,
-      "dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
-              "<'row'<'col-sm-12'tr>>" +
-              "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-      "language": {
-        "info": "显示第 _PAGE_／_PAGES_ 页",
-        "search": "搜索：",
-        "lengthMenu": "每页显示 _MENU_ 条数据"
-      },
-      buttons: [
-        {
-            text: '更新',
-            action: function ( e, dt, node, config ) {
-                dt.ajax.reload();
-            }
-        },
-        {
-            text: '新增',
-            action: function ( e, dt, node, config ) {
-              $('#dt_editor_modal').modal('show');
-                // this.row.add([
-                //   '123',
-                //   '123',
-                //   '123',
-                //   '123',
-                //   '123',
-                //   '123',
-                //   '123',
-                //   '123',
-                //   '123',
-                //   '123',
-                //   '123'
-                // ]).draw(false);
-            }
-        },
-        {
-          extend: 'selectedSingle',
-          text: '编辑',
-          action : function(e, dt, node, config){
-            console.log(this.row({selected: true}).data());
-          }
-        },
-        {
-          extend: 'selected',
-          text: '删除',
-          action: function(e, dt, node, config){
-            this.row({selected: true}).remove().draw();
-          }
-        },
-        {
-          extend: 'selectAll',
-          text: '全选',
-        },
-        {
-          extend: 'selectNone',
-          text: '取消选择'
-        },
-        {
-          extend: 'csv',
-          text: 'CSV导出'
-        },
-        {
-          extend: 'excel',
-          text: 'Excel导出'
+    var table = $('#datatable').DataTable({
+            ajax: '/data/load',
+            deferRender: true,
+            "dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+            "language": {
+              "info": "显示第 _PAGE_／_PAGES_ 页",
+              "search": "搜索：",
+              "lengthMenu": "每页显示 _MENU_ 条数据"
+            },
+            buttons: [
+              {
+                  text: '更新',
+                  action: function ( e, dt, node, config ) {
+                      dt.ajax.reload();
+                  }
+              },
+              {
+                  text: '新增',
+                  action: function ( e, dt, node, config ) {
+                    $('#dt_editor_modal input').val("");
+                    $('#dt_editor_modal').modal('show');
+                  }
+              },
+              {
+                extend: 'selectedSingle',
+                text: '编辑',
+                action : function(e, dt, node, config){
+                  var data = this.row({selected: true}).data();
+                  $('#dt_editor_modal input').val(function(index, value){
+                    return data[index];
+                  });
+                  $('#dt_editor_modal').modal('show');
+                }
+              },
+              {
+                extend: 'selected',
+                text: '删除',
+                action: function(e, dt, node, config){
+                  this.row({selected: true}).remove().draw();
+                }
+              },
+              {
+                extend: 'selectAll',
+                text: '全选',
+              },
+              {
+                extend: 'selectNone',
+                text: '取消选择'
+              },
+              {
+                extend: 'csv',
+                text: 'CSV导出'
+              },
+              {
+                extend: 'excel',
+                text: 'Excel导出'
+              }
+            ],
+            select: true
+      });
+
+      // datable add Listener for addition and editing
+      $('#dt_editor_button').click(function(){
+        if(table.row({selected:true}).index()){
+          console.log('editing');
+        }else{
+          console.log('creation');
         }
-      ],
-      select: true
-    });
+      });
 
 });
