@@ -67,6 +67,31 @@ def data_load(request):
     return JsonResponse({'data': data})
     # return JsonResponse({'data': df.to_json(orient='records')})
 
+def data_add(request):
+    "数据库添加记录"
+    parameters = request.POST
+    ps = PointSourceData()
+    ps.station.stationName = parameters[0]
+    ps.station.areaId = parameters[1]
+    ps.station.industryName = parameters[2]
+    ps.SO2 = float(parameters[3])
+    ps.NOX = float(parameters[4])
+    ps.CO = float(parameters[5])
+    ps.PM = float(parameters[6])
+    ps.PM10 = float(parameters[7])
+    ps.PM25 = float(parameters[8])
+    ps.NMVOC = float(parameters[9])
+    ps.NH3 = float(parameters[10])
+    ps.save()
+
+def data_update(request):
+    "数据库更新记录"
+    parameters = request.POST
+
+def data_delete(request):
+    "数据库删除记录"
+    parameters = request.POST
+
 def shapefile_create(request):
     "get ajax POST request and create shapefile with custom parameters"
     parameters = request.POST

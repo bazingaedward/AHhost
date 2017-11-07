@@ -71,10 +71,43 @@ $(function(){
 
       // datable add Listener for addition and editing
       $('#dt_editor_button').click(function(){
+        var data = {};
+        $('#dt_editor_modal input').val(function(index, value){
+          data[index] = value;
+        });
+        //check data[0]
+        if(!data[0]){
+          alert('企业名称必须填写');
+          return
+        }
         if(table.row({selected:true}).index()){
-          console.log('editing');
+          //编辑内容
+          $.ajax({
+            ulr: '/data/update',
+            data: data,
+            type: 'POST',
+            success: function(data){
+              console.log(data);
+              //todo: datatable更新内容
+            },
+            fail: function(error){
+              console.log(error);
+            }
+          });
         }else{
-          console.log('creation');
+          //创建内容
+          $.ajax({
+            ulr: '/data/add',
+            data: data,
+            type: 'POST',
+            success: function(data){
+              console.log(data);
+              //todo: datatable更新内容
+            },
+            fail: function(error){
+              console.log(error);
+            }
+          });
         }
       });
 
