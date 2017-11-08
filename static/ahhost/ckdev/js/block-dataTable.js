@@ -6,9 +6,11 @@
 */
 
 $(function(){
+    var BUTTON;
     var table = $('#datatable').DataTable({
             ajax: '/data/load',
             deferRender: true,
+            // "scrollX": true,
             "dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-5'i><'col-sm-7'p>>",
@@ -17,6 +19,12 @@ $(function(){
               "search": "搜索：",
               "lengthMenu": "每页显示 _MENU_ 条数据"
             },
+            "columnDefs": [
+              {
+                "targets": [2,3,4,5,6,7,8],
+                "visible": false
+              }
+            ],
             buttons: [
               {
                   text: '更新',
@@ -27,6 +35,7 @@ $(function(){
               {
                   text: '新增',
                   action: function ( e, dt, node, config ) {
+                    BUTTON = 'add';
                     $('#dt_editor_modal input').val("");
                     $('#dt_editor_modal').modal('show');
                   }
@@ -35,6 +44,7 @@ $(function(){
                 extend: 'selectedSingle',
                 text: '编辑',
                 action : function(e, dt, node, config){
+                  BUTTON = 'update'
                   var data = this.row({selected: true}).data();
                   $('#dt_editor_modal input').val(function(index, value){
                     return data[index];
@@ -80,28 +90,32 @@ $(function(){
           alert('企业名称必须填写');
           return
         }
-        if(table.row({selected:true}).index()){
+
+        if(BUTTON == 'update'){
           //编辑内容
           $.ajax({
+            type: 'GET',
             ulr: '/data/update',
-            data: data,
-            type: 'POST',
+            data: {
+              'status': '123'
+            },
             success: function(data){
               console.log(data);
               //todo: datatable更新内容
             },
             fail: function(error){
-              console.log(error);
+              console.log('no');
             }
           });
         }else{
           //创建内容
+
           $.ajax({
             ulr: '/data/add',
             data: data,
             type: 'POST',
-            success: function(data){
-              console.log(data);
+            success: function(response){
+              console.log(response);
               //todo: datatable更新内容
             },
             fail: function(error){
