@@ -51,6 +51,14 @@ def data_load(request):
         data.append([
             record.station.stationName,
             record.station.areaId,
+            record.station.province,
+            record.station.city,
+            record.station.county,
+            record.station.street,
+            record.station.address,
+            "%.1f" %record.station.longitude,
+            "%.1f" %record.station.latitude,
+            record.station.industryId,
             record.station.industryName,
             "%.1f" %record.SO2,
             "%.1f" %record.NOX,
@@ -70,27 +78,45 @@ def data_load(request):
 def data_add(request):
     "数据库添加记录"
     parameters = request.POST
-    ps = PointSourceData()
-    ps.station.stationName = parameters[0]
-    ps.station.areaId = parameters[1]
-    ps.station.industryName = parameters[2]
-    ps.SO2 = float(parameters[3])
-    ps.NOX = float(parameters[4])
-    ps.CO = float(parameters[5])
-    ps.PM = float(parameters[6])
-    ps.PM10 = float(parameters[7])
-    ps.PM25 = float(parameters[8])
-    ps.NMVOC = float(parameters[9])
-    ps.NH3 = float(parameters[10])
-    ps.save()
+    # station = PointSource(
+    #     stationName = parameters[0],
+    #     areaId = parameters[1],
+    #     province = parameters[2],
+    #     city = parameters[3],
+    #     county = parameters[4],
+    #     street = parameters[5],
+    #     address = parameters[6],
+    #     longitude = float(parameters[7]),
+    #     latitude = float(parameters[8]),
+    #     industryId = parameters[9],
+    #     industryName = parameters[10],
+    # )
+    # station.save()
+    # data = PointSourceData(
+    #     station = station,
+    #     SO2 = float(parameters[11]),
+    #     NOX = float(parameters[10]),
+    #     CO = float(parameters[12]),
+    #     PM = float(parameters[13]),
+    #     PM10 = float(parameters[14]),
+    #     PM25 = float(parameters[15]),
+    #     NMVOC = float(parameters[16]),
+    #     NH3 = float(parameters[17]),
+    # )
+    # data.save()
+    return JsonResponse(parameters)
 
 def data_update(request):
     "数据库更新记录"
-    parameters = request.POST
+    parameters = request.GET
+
+    return render('<h1>hello</h1>')
 
 def data_delete(request):
     "数据库删除记录"
     parameters = request.POST
+
+    return JsonResponse({'status': 'OK'})
 
 def shapefile_create(request):
     "get ajax POST request and create shapefile with custom parameters"
