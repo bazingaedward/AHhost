@@ -21,7 +21,7 @@ $(function(){
             },
             "columnDefs": [
               {
-                "targets": [2,3,4,5,6,7,8],
+                "targets": [2,3,4,5,6,7,8,9],
                 "visible": false
               }
             ],
@@ -97,12 +97,13 @@ $(function(){
             type: "POST",
             url: "/data/update",
             data: parameter,
-            success: function (data) {
+            success: function(data){
+              cleanModal();
               console.log(data);
               //todo: datatable更新内容
             },
             fail: function(error){
-              console.log('no');
+              console.log(error);
             }
           });
         }else{
@@ -111,14 +112,20 @@ $(function(){
             type: 'POST',
             url: '/data/add',
             data: parameter,
-            success: function(response){
-              console.log(response);
+            success: function(data){
+              cleanModal();
               //todo: datatable更新内容
             },
             fail: function(error){
               console.log(error);
             }
           });
+        }
+
+        function cleanModal(){
+          //hidden modal and update data
+          // $('#dt_editor_modal').modal('hide');
+          // table.ajax.reload();
         }
       });
 

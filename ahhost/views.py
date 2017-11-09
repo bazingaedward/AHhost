@@ -68,6 +68,7 @@ def data_load(request):
             "%.1f" %record.PM25,
             "%.1f" %record.NMVOC,
             "%.1f" %record.NH3,
+            record.date
             ])
     # df = read_frame(qs)
     # data = df[['station','SO2','NOX','CO','PM','PM10','PM25','NMVOC','NH3']]
@@ -78,39 +79,74 @@ def data_load(request):
 def data_add(request):
     "数据库添加记录"
     parameters = request.POST
-    # station = PointSource(
-    #     stationName = parameters[0],
-    #     areaId = parameters[1],
-    #     province = parameters[2],
-    #     city = parameters[3],
-    #     county = parameters[4],
-    #     street = parameters[5],
-    #     address = parameters[6],
-    #     longitude = float(parameters[7]),
-    #     latitude = float(parameters[8]),
-    #     industryId = parameters[9],
-    #     industryName = parameters[10],
-    # )
-    # station.save()
-    # data = PointSourceData(
-    #     station = station,
-    #     SO2 = float(parameters[11]),
-    #     NOX = float(parameters[10]),
-    #     CO = float(parameters[12]),
-    #     PM = float(parameters[13]),
-    #     PM10 = float(parameters[14]),
-    #     PM25 = float(parameters[15]),
-    #     NMVOC = float(parameters[16]),
-    #     NH3 = float(parameters[17]),
-    # )
-    # data.save()
-    return JsonResponse(parameters)
+    station = PointSource(
+        stationName = parameters['0'],
+        areaId = parameters['1'],
+        province = parameters['2'],
+        city = parameters['3'],
+        county = parameters['4'],
+        street = parameters['5'],
+        address = parameters['6'],
+        longitude = parameters['7'],
+        latitude = parameters['8'],
+        industryId = parameters['9'],
+        industryName = parameters['10'],
+    )
+    station.save()
+    data = PointSourceData(
+        station = station,
+        SO2 = parameters['11'],
+        NOX = parameters['12'],
+        CO = parameters['13'],
+        PM = parameters['14'],
+        PM10 = parameters['15'],
+        PM25 = parameters['16'],
+        NMVOC = parameters['17'],
+        NH3 = parameters['18'],
+        date= parameters['19']
+    )
+    data.save()
+    return JsonResponse({'status': 'OK'})
 
 def data_update(request):
     "数据库更新记录"
-    parameters = request.GET
-
-    return render('<h1>hello</h1>')
+    parameters = request.POST
+    # station = PointSource.objects.get(stationName=parameters['0'])
+    # station.stationName = parameters['0']
+    # station.areaId = parameters['1']
+    # station.province = parameters['2']
+    # station.city = parameters['3']
+    # station.county = parameters['4']
+    # station.street = parameters['5']
+    # station.address = parameters['6']
+    # station.longitude = parameters['7']
+    # station.latitude = parameters['8']
+    # station.industryId = parameters['9']
+    # station.industryName = parameters['10']
+    # station.save()
+    data = PointSourceData.objects.get(station__stationName=parameters['0'])
+    data.station.stationName = parameters['0']
+    data.station.areaId = parameters['1']
+    data.station.province = parameters['2']
+    data.station.city = parameters['3']
+    data.station.county = parameters['4']
+    data.station.street = parameters['5']
+    data.station.address = parameters['6']
+    data.station.longitude = parameters['7']
+    data.station.latitude = parameters['8']
+    data.station.industryId = parameters['9']
+    data.station.industryName = parameters['10']
+    data.SO2 = parameters['11']
+    data.NOX = parameters['12']
+    data.CO = parameters['13']
+    data.PM = parameters['14']
+    data.PM10 = parameters['15']
+    data.PM25 = parameters['16']
+    data.NMVOC = parameters['17']
+    data.NH3 = parameters['18']
+    data.date= parameters['19']
+    data.save()
+    return JsonResponse({'status': 'OK'})
 
 def data_delete(request):
     "数据库删除记录"
