@@ -103,9 +103,43 @@ $(function(){
         $('#dt_editor_modal input').val(function(index, value){
           parameter[index] = value;
         });
-        //check data[0]
+
+        //check required fields
         if(!parameter[0]){
           alert('企业名称必须填写');
+          return
+        }else if(!parameter[7]){
+          alert('经度必须填写');
+          return
+        }else if(!parameter[8]){
+          alert('纬度必须填写');
+          return
+        }else if(!parameter[11]){
+          alert('SO2必须填写');
+          return
+        }else if(!parameter[12]){
+          alert('NOX必须填写');
+          return
+        }else if(!parameter[13]){
+          alert('CO必须填写');
+          return
+        }else if(!parameter[14]){
+          alert('PM必须填写');
+          return
+        }else if(!parameter[15]){
+          alert('PM10必须填写');
+          return
+        }else if(!parameter[16]){
+          alert('PM25必须填写');
+          return
+        }else if(!parameter[17]){
+          alert('NMVOC必须填写');
+          return
+        }else if(!parameter[18]){
+          alert('NH3必须填写');
+          return
+        }else if(!parameter[19]){
+          alert('日期必须填写');
           return
         }
 
