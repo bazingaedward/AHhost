@@ -6,7 +6,7 @@
 */
 
 $(function(){
-    var BUTTON;
+    var BUTTON = {};
     var table = $('#datatable').DataTable({
             ajax: '/data/load',
             deferRender: true,
@@ -35,7 +35,7 @@ $(function(){
               {
                   text: '新增',
                   action: function ( e, dt, node, config ) {
-                    BUTTON = 'add';
+                    BUTTON['type'] = 'add';
                     $('#dt_editor_modal input').val("");
                     $('#dt_editor_modal').modal('show');
                   }
@@ -44,11 +44,12 @@ $(function(){
                 extend: 'selectedSingle',
                 text: '编辑',
                 action : function(e, dt, node, config){
-                  BUTTON = 'update'
+                  BUTTON['type'] = 'update'
                   var data = this.row({selected: true}).data();
                   $('#dt_editor_modal input').val(function(index, value){
                     return data[index];
                   });
+                  $('#dt_editor_modal input:first').prop('disabled', true);
                   $('#dt_editor_modal').modal('show');
                 }
               },
@@ -56,7 +57,24 @@ $(function(){
                 extend: 'selected',
                 text: '删除',
                 action: function(e, dt, node, config){
-                  this.row({selected: true}).remove().draw();
+                  var names = {}
+                  this.rows({selected: true}).data().each(function(d, index){
+                    names[index] = d[0]
+                  });
+
+                  $.ajax({
+                    type: "POST",
+                    url: "/data/delete",
+                    data: names,
+                    success: function(data){
+                      console.log(data);
+
+                    },
+                    fail: function(error){
+                      console.log(error);
+                    }
+                  });
+                  this.rows({selected: true}).remove().draw();
                 }
               },
               {
@@ -91,7 +109,7 @@ $(function(){
           return
         }
 
-        if(BUTTON == 'update'){
+        if(BUTTON['type'] == 'update'){
           //编辑内容
           $.ajax({
             type: "POST",
@@ -99,6 +117,8 @@ $(function(){
             data: parameter,
             success: function(data){
               cleanModal();
+              // $('#dt_editor_modal input:first').prop('disabled', false);
+              $('#dt_editor_modal input:first').prop('disabled', false);
               console.log(data);
               //todo: datatable更新内容
             },
@@ -106,7 +126,7 @@ $(function(){
               console.log(error);
             }
           });
-        }else{
+        }else if(BUTTON['type'] == 'add'){
           //创建内容
           $.ajax({
             type: 'POST',
@@ -124,8 +144,8 @@ $(function(){
 
         function cleanModal(){
           //hidden modal and update data
-          // $('#dt_editor_modal').modal('hide');
-          // table.ajax.reload();
+          table.ajax.reload();
+          $('#dt_editor_modal').modal('hide');
         }
       });
 

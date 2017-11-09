@@ -111,31 +111,20 @@ def data_add(request):
 def data_update(request):
     "数据库更新记录"
     parameters = request.POST
-    # station = PointSource.objects.get(stationName=parameters['0'])
+    station = PointSource.objects.get(stationName=parameters['0'])
     # station.stationName = parameters['0']
-    # station.areaId = parameters['1']
-    # station.province = parameters['2']
-    # station.city = parameters['3']
-    # station.county = parameters['4']
-    # station.street = parameters['5']
-    # station.address = parameters['6']
-    # station.longitude = parameters['7']
-    # station.latitude = parameters['8']
-    # station.industryId = parameters['9']
-    # station.industryName = parameters['10']
-    # station.save()
+    station.areaId = parameters['1']
+    station.province = parameters['2']
+    station.city = parameters['3']
+    station.county = parameters['4']
+    station.street = parameters['5']
+    station.address = parameters['6']
+    station.longitude = parameters['7']
+    station.latitude = parameters['8']
+    station.industryId = parameters['9']
+    station.industryName = parameters['10']
+    station.save()
     data = PointSourceData.objects.get(station__stationName=parameters['0'])
-    data.station.stationName = parameters['0']
-    data.station.areaId = parameters['1']
-    data.station.province = parameters['2']
-    data.station.city = parameters['3']
-    data.station.county = parameters['4']
-    data.station.street = parameters['5']
-    data.station.address = parameters['6']
-    data.station.longitude = parameters['7']
-    data.station.latitude = parameters['8']
-    data.station.industryId = parameters['9']
-    data.station.industryName = parameters['10']
     data.SO2 = parameters['11']
     data.NOX = parameters['12']
     data.CO = parameters['13']
@@ -150,8 +139,9 @@ def data_update(request):
 
 def data_delete(request):
     "数据库删除记录"
-    parameters = request.POST
-
+    names = request.POST
+    for idx in names:
+        PointSourceData.objects.get(station__stationName=names[idx]).delete()
     return JsonResponse({'status': 'OK'})
 
 def shapefile_create(request):
