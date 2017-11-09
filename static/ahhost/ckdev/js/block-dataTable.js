@@ -81,12 +81,12 @@ $(function(){
 
       // datable add Listener for addition and editing
       $('#dt_editor_button').click(function(){
-        var data = {};
+        var parameter = {};
         $('#dt_editor_modal input').val(function(index, value){
-          data[index] = value;
+          parameter[index] = value;
         });
         //check data[0]
-        if(!data[0]){
+        if(!parameter[0]){
           alert('企业名称必须填写');
           return
         }
@@ -94,12 +94,10 @@ $(function(){
         if(BUTTON == 'update'){
           //编辑内容
           $.ajax({
-            type: 'GET',
-            ulr: '/data/update',
-            data: {
-              'status': '123'
-            },
-            success: function(data){
+            type: "POST",
+            url: "/data/update",
+            data: parameter,
+            success: function (data) {
               console.log(data);
               //todo: datatable更新内容
             },
@@ -109,11 +107,10 @@ $(function(){
           });
         }else{
           //创建内容
-
           $.ajax({
-            ulr: '/data/add',
-            data: data,
             type: 'POST',
+            url: '/data/add',
+            data: parameter,
             success: function(response){
               console.log(response);
               //todo: datatable更新内容

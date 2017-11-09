@@ -133,7 +133,7 @@ $(function() {
             color = [0,0,128, 0.8];
             break;
           default:
-            alert('数据颜色渲染错误');
+            console.log('数据颜色渲染错误');
         };
         return new ol.style.Style({
             fill: new ol.style.Fill({
