@@ -1,6 +1,6 @@
 import requests, bs4, os, json
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.conf import settings
 from ahhost.models import PointSource, PointSourceData
 from ahhost.DataHandler import DataHandler
@@ -13,7 +13,7 @@ def index(request):
     return render(request,'index.html')
 
 
-def data_import(request):
+def data_import(request, date='2015-11-01'):
     "导入Excel数据文件"
     COL = [
         'stationName',
@@ -37,10 +37,10 @@ def data_import(request):
         'NH3'
         ]
     dh = DataHandler()
-    df = dh.loadExcel('media/安徽省排放清单估算结果-2015.11.xlsx')
+    df = dh.loadExcel('media/excel/data.xlsx')
     df2 = df.ix[:, :19]
     df2.columns = COL
-    dh.saveToORM(df2, dt.date(2015, 11, 1))
+    dh.saveToORM(df2, date)
     return HttpResponse('ok')
 
 def data_load(request):
@@ -178,3 +178,23 @@ def raster_calculate(request):
     nh.process(parameters['Area'], pollution, resolution)
 
     return JsonResponse({'status': 'OK'})
+
+
+def upload_file(request):
+    # parameters = request.POST
+    def handle_uploaded_file(f):
+        # save files
+        with open('media/excel/data.xlsx', 'wb+') as destination:
+            for chunk in f.chunks():
+                destination.write(chunk)
+        # data import
+        data_import(request, request.POST.get('dt'))
+
+    if request.method == 'POST':
+        handle_uploaded_file(request.FILES['exfile'])
+        # return JsonResponse(parameters)
+        return HttpResponseRedirect('/')
+    # else:
+    #     form = UploadFileForm()
+    # return render(request, 'upload.html', {'form': form})
+    # return HttpResponseRedirect('/')

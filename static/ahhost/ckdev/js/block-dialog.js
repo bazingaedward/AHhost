@@ -103,4 +103,9 @@ $(function(){
     });
   });
 
+  // modal for file upload
+  $('#upload_button').click(function(){
+    console.log($('#file_upload_modal input:file').val())
+  });
+
 });
