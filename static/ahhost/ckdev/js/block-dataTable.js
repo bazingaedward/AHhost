@@ -57,18 +57,19 @@ $(function(){
                 extend: 'selected',
                 text: '删除',
                 action: function(e, dt, node, config){
-                  var names = {}
+                  var names = [];
                   this.rows({selected: true}).data().each(function(d, index){
-                    names[index] = d[0]
+                    names.push(d[0]);
                   });
 
                   $.ajax({
                     type: "POST",
                     url: "/data/delete",
-                    data: names,
+                    data: {
+                      name: names
+                    },
                     success: function(data){
                       console.log(data);
-
                     },
                     fail: function(error){
                       console.log(error);

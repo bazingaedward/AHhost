@@ -141,8 +141,11 @@ def data_delete(request):
     "数据库删除记录"
     names = request.POST
     for idx in names:
+        # 删除操作： PointSourceData包涵PointSouce外键，只要删除pointsource则父表中记录自动被删除
         PointSourceData.objects.get(station__stationName=names[idx]).delete()
-    return JsonResponse({'status': 'OK'})
+        PointSource.objects.get(stationName=names[idx]).delete()
+    return JsonResponse(names)
+    # return JsonResponse(names)
 
 def shapefile_create(request):
     "get ajax POST request and create shapefile with custom parameters"

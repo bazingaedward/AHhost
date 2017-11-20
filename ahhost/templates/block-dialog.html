@@ -97,6 +97,23 @@
       </div>
 </div>
 
+<!-- filtertable:过滤统计污染源数据 -->
+<div id="filter_modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>统计分析</h3>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- shapefile modal:生成shapefile modal -->
 <div id="shapefile_modal" class="modal" tabindex="-1" role="dialog">
@@ -122,7 +139,7 @@
           <div class="form-group row">
             <label for="resolution" class="col-sm-3 col-form-label">网格分辨率:</label>
             <div class="col-sm-4">
-              <input class="form-control" type="number" value="0.1" min="0.01" max="0.1" step="0.01" id="resolution">
+              <input class="form-control" type="number" value="0.1" min="0.01" max="1" step="0.01" id="resolution">
             </div>
           </div>
         </form>
@@ -173,6 +190,8 @@
           <div class="form-group row">
             <label for="resolution" class="col-sm-3 col-form-label">网格分辨率:</label>
             <select class="custom-select mb-2 mr-sm-2 col-sm-4" id="gridResolutionSelect">
+              <option value="100">1度 x 1度</option>
+              <option value="50">0.5度 x 0.5度</option>
               <option value="10">0.1度 x 0.1度</option>
               <option value="5">0.05度 x 0.05度</option>
               <option value="1">0.01度 x 0.01度</option>
