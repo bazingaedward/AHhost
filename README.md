@@ -1,6 +1,11 @@
-# AHhost: a Django-based WebGIS web-App for data Visualization and Manipulation  
+# AHhost
 
-# Dependency:
+a Django-based WebGIS web-App for data Visualization and Manipulation
+
+---
+
+
+## Dependency:
 - JQuery
 - Openlayers4
 - Datatable.js
@@ -8,7 +13,7 @@
 - Webpack
 - Docker
 
-# Django installed apps
+## Django Installed apps
 - django-cms<3.5
 - djangocms-admin-style>=1.2,<1.3
 - django-treebeard>=4.0,<5.0
@@ -42,3 +47,6 @@
 - pyshp
 - netCDF4
 - geojson
+
+## License
+[MIT](https://tldrlegal.com/license/mit-license)
