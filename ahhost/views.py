@@ -7,6 +7,7 @@ from ahhost.DataHandler import DataHandler
 import datetime as dt
 from django_pandas.io import read_frame
 from ahhost.Gridding import ShapeFileHandler,NCHandler,RasterHandler
+from pprint import pprint
 
 
 def index(request):
@@ -79,8 +80,9 @@ def data_load(request):
 def data_filter(request):
     "数据过滤及分析"
     parameters = request.POST
+
     data = []
-    qs = PointSourceData.objects.filter(SO2__lt = 1000)
+    qs = PointSourceData.objects.raw("select * from ahhost_pointsourcedata where %s" %parameters['sql'])
     for record in qs:
         data.append([
             record.station.stationName,

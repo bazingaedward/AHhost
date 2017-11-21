@@ -109,28 +109,68 @@ $(function(){
   });
 
   // modal for myFilter
+  var SQLITE_MAP = {
+		sStart:'sw',
+		sContain:'ct',
+		sNotContain:'nct',
+		sFinish:'fw',
+		sInList:'in',
+		sIsNull:'null',
+		sIsNotNull:'nn',
+		sBetween:'bw',
+		sNotBetween:'nbw'
+  }
   $("#myFilter").structFilter({
       fields: [
           {id:"areaId", type:"text", label:"行政区划代码"},
-          {id:"so2", type:"number", label:"SO2总量"},
-          {id:"nox", type:"number", label:"NOx总量"},
-          {id:"co", type:"number", label:"CO总量"},
-          {id:"pm", type:"number", label:"PM总量"},
-          {id:"pm10", type:"number", label:"PM10总量"},
-          {id:"pm25", type:"number", label:"PM2.5总量"},
-          {id:"nmvoc", type:"number", label:"NMVOC总量"},
-          {id:"nh3", type:"number", label:"NH3总量"},
+          {id:"SO2", type:"number", label:"SO2"},
+          {id:"NOX", type:"number", label:"NOx"},
+          {id:"CO", type:"number", label:"CO"},
+          {id:"PM", type:"number", label:"PM"},
+          {id:"PM10", type:"number", label:"PM10"},
+          {id:"PM25", type:"number", label:"PM2.5"},
+          {id:"NMVOC", type:"number", label:"NMVOC"},
+          {id:"NH3", type:"number", label:"NH3"},
       ],
       buttonLabels: true,
       submitButton: true,
   });
   $("#myFilter").on("submit.search", function(event){
     var conditions = $("#myFilter").structFilter('val');
+    var sql = [];
+    conditions.forEach(function(item){
+      switch(item['operator']['value']){
+        case 'eq':
+          sql.push(item['field']['value']+" = "+item['value']['value']);
+          break;
+        case 'ne':
+          sql.push(item['field']['value']+" != "+item['value']['value']);
+          break;
+        case 'gt':
+          sql.push(item['field']['value']+" > "+item['value']['value']);
+          break;
+        case 'lt':
+          sql.push(item['field']['value']+" < "+item['value']['value']);
+          break;
+        case 'sw': break;
+        case 'ct': break;
+        case 'nct': break;
+        case 'fw': break;
+        case 'in': break;
+        case 'null': break;
+        case 'nn': break;
+        case 'bw': break;
+        case 'nbw': break;
+        default:
+          console.log('filter operator not found!');
+      }
+    });
+    console.log(sql.join(' AND '));
     $.ajax({
       type: "POST",
       url: "/data/filter",
       data: {
-        data: conditions
+        'sql': sql.join(' AND ')
       },
       success: function(res){
         if(res['status'] == 'OK'){
@@ -147,6 +187,7 @@ $(function(){
       }
     })
 });
+
 
   var filterTable = $('#dt-statistics').DataTable({
         "dom": "<'row'<'col-sm-3'f><'col-sm-9'p>>" +

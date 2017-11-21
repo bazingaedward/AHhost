@@ -1,7 +1,7 @@
 from django.test import TestCase, RequestFactory
 from ahhost.models import PointSource, PointSourceData
 import datetime as dt
-from ahhost.views import data_add, data_update
+from ahhost.views import data_add, data_update, data_filter
 from pprint import pprint
 
 class RequestTestCase(TestCase):
@@ -65,3 +65,12 @@ class RequestTestCase(TestCase):
         ps = PointSourceData.objects.get(station__stationName='test')
         print('second--------------')
         print(ps.station.stationName,ps.station.areaId,ps.station.industryName,ps.date)
+
+    def test_data_filter(self):
+        factory = RequestFactory()
+        parameters = {
+          'sql': "SO2 > 1000"
+        }
+        request = factory.post('/data/filter',parameters)
+        response = data_filter(request)
+        print(response)
