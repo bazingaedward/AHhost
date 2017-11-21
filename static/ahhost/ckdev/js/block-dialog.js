@@ -108,4 +108,24 @@ $(function(){
     console.log($('#file_upload_modal input:file').val())
   });
 
+  // modal for myFilter
+  $("#myFilter").structFilter({
+            fields: [
+                {id:"lastname", type:"text", label:"Lastname"},
+                {id:"firstname", type:"text", label:"Firstname"},
+                {id:"active", type:"boolean", label:"Is active"},
+                {id:"age", type:"number", label:"Age"},
+                {id:"bday", type:"date", label:"Birthday"},
+                {id:"category", type:"list", label:"Category",
+                    list:[
+                        {id:"1", label:"Family"},
+                        {id:"2", label:"Friends"},
+                        {id:"3", label:"Business"},
+                        {id:"4", label:"Acquaintances"},
+                        {id:"5", label:"Other"}
+                    ]
+                }
+            ]
+        });
+
 });

@@ -1,9 +1,14 @@
 # AHhost
 
-a Django-based WebGIS web-App for data Visualization and Manipulation
+A Django-based WebGIS web app for data Visualization and Manipulation
 
 ---
 
+## Features
+
+## Demos
+
+## Quick Start
 
 ## Dependency:
 - JQuery
