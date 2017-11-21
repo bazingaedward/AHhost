@@ -76,6 +76,27 @@ def data_load(request):
     return JsonResponse({'data': data})
     # return JsonResponse({'data': df.to_json(orient='records')})
 
+def data_filter(request):
+    "数据过滤及分析"
+    parameters = request.POST
+    data = []
+    qs = PointSourceData.objects.filter(SO2__lt = 1000)
+    for record in qs:
+        data.append([
+            record.station.stationName,
+            record.station.areaId,
+            "%.1f" %record.SO2,
+            "%.1f" %record.NOX,
+            "%.1f" %record.CO,
+            "%.1f" %record.PM,
+            "%.1f" %record.PM10,
+            "%.1f" %record.PM25,
+            "%.1f" %record.NMVOC,
+            "%.1f" %record.NH3,
+            record.date
+            ])
+    return JsonResponse({'status': 'OK','data': data})
+
 def data_add(request):
     "数据库添加记录"
     parameters = request.POST

@@ -24,6 +24,7 @@ urlpatterns = i18n_patterns(
     url(r'^admin/', include(admin.site.urls)),
     url(r'^data/load$', views.data_load),
     url(r'^data/import$', views.data_import),
+    url(r'^data/filter$', views.data_filter),
     url(r'^data/add$', views.data_add),
     url(r'^data/update$', views.data_update),
     url(r'^data/delete$', views.data_delete),

@@ -132,8 +132,15 @@ $(function(){
       data: {
         data: conditions
       },
-      success: function(data){
-        console.log(data);
+      success: function(res){
+        if(res['status'] == 'OK'){
+          filterTable
+            .clear()
+            .rows.add(res['data'])
+            .draw();
+          console.log(res['data']);
+        }
+
       },
       fail: function(error){
         console.log('Filter:', error);
@@ -141,11 +148,11 @@ $(function(){
     })
 });
 
-  $('#dt-statistics').DataTable({
-    "dom": "<'row'<'col-sm-3'f><'col-sm-9'p>>" +
-            "<'row'<'col-sm-12'tr>>",
-    "language": {
-      "search": "搜索："
-    },
-  });
+  var filterTable = $('#dt-statistics').DataTable({
+        "dom": "<'row'<'col-sm-3'f><'col-sm-9'p>>" +
+                "<'row'<'col-sm-12'tr>>",
+        "language": {
+          "search": "搜索："
+        }
+      });
 });
