@@ -110,22 +110,42 @@ $(function(){
 
   // modal for myFilter
   $("#myFilter").structFilter({
-            fields: [
-                {id:"lastname", type:"text", label:"Lastname"},
-                {id:"firstname", type:"text", label:"Firstname"},
-                {id:"active", type:"boolean", label:"Is active"},
-                {id:"age", type:"number", label:"Age"},
-                {id:"bday", type:"date", label:"Birthday"},
-                {id:"category", type:"list", label:"Category",
-                    list:[
-                        {id:"1", label:"Family"},
-                        {id:"2", label:"Friends"},
-                        {id:"3", label:"Business"},
-                        {id:"4", label:"Acquaintances"},
-                        {id:"5", label:"Other"}
-                    ]
-                }
-            ]
-        });
+      fields: [
+          {id:"areaId", type:"text", label:"行政区划代码"},
+          {id:"so2", type:"number", label:"SO2总量"},
+          {id:"nox", type:"number", label:"NOx总量"},
+          {id:"co", type:"number", label:"CO总量"},
+          {id:"pm", type:"number", label:"PM总量"},
+          {id:"pm10", type:"number", label:"PM10总量"},
+          {id:"pm25", type:"number", label:"PM2.5总量"},
+          {id:"nmvoc", type:"number", label:"NMVOC总量"},
+          {id:"nh3", type:"number", label:"NH3总量"},
+      ],
+      buttonLabels: true,
+      submitButton: true,
+  });
+  $("#myFilter").on("submit.search", function(event){
+    var conditions = $("#myFilter").structFilter('val');
+    $.ajax({
+      type: "POST",
+      url: "/data/filter",
+      data: {
+        data: conditions
+      },
+      success: function(data){
+        console.log(data);
+      },
+      fail: function(error){
+        console.log('Filter:', error);
+      }
+    })
+});
 
+  $('#dt-statistics').DataTable({
+    "dom": "<'row'<'col-sm-3'f><'col-sm-9'p>>" +
+            "<'row'<'col-sm-12'tr>>",
+    "language": {
+      "search": "搜索："
+    },
+  });
 });
