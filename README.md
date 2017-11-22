@@ -10,13 +10,15 @@ A Django-based WebGIS web app for data Visualization and Manipulation
 
 ## Quick Start
 
-## Dependency:
-- JQuery
-- Openlayers4
-- Datatable.js
-- Bootstrap3.3
-- Webpack
-- Docker
+## Tech Stacks:
+- [structFilter](https://github.com/evoluteur/structured-filter)
+- [Openlayers 4](http://openlayers.org/)
+- [DataTable.js](https://datatables.net/)
+- [Bootstrap 3](https://getbootstrap.com/docs/3.3/components/)
+- [JQuery UI 1.12.1](https://jqueryui.com/)
+- [JQuery](https://jquery.com/)
+- [Webpack](http://webpack.github.io/)
+- [Docker](https://www.docker.com/)
 
 ## Django Installed apps
 - django-cms<3.5
