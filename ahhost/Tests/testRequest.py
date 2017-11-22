@@ -74,3 +74,13 @@ class RequestTestCase(TestCase):
         request = factory.post('/data/filter',parameters)
         response = data_filter(request)
         print(response)
+
+    def test_dataframe_sum(self):
+        import pandas as pd
+        data = [
+            ['hello', '12', '4'],
+            ['world', '13', '5.0']
+            ]
+        df = pd.DataFrame(data)
+        total = df[[1,2]].astype(float).sum(numeric_only=True).as_matrix()
+        print(total)

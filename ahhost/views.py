@@ -2,12 +2,14 @@ import requests, bs4, os, json
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.conf import settings
+from django.db.models import Sum
 from ahhost.models import PointSource, PointSourceData
 from ahhost.DataHandler import DataHandler
 import datetime as dt
 from django_pandas.io import read_frame
 from ahhost.Gridding import ShapeFileHandler,NCHandler,RasterHandler
 from pprint import pprint
+import pandas as pd
 
 
 def index(request):
@@ -103,7 +105,11 @@ def data_filter(request):
             "%.1f" %record.NH3,
             record.date
             ])
-    return JsonResponse({'status': 'OK','data': data})
+    total = []
+    if data:
+        df = pd.DataFrame(data)
+        total = df[[2,3,4,5,6,7,8,9]].astype(float).sum(numeric_only=True).to_json()
+    return JsonResponse({'status': 'OK','data': data,'total':total})
 
 def data_add(request):
     "数据库添加记录"
@@ -172,7 +178,7 @@ def data_delete(request):
     for idx in names:
         # 删除操作： PointSourceData包涵PointSouce外键，只要删除pointsource则父表中记录自动被删除
         PointSourceData.objects.get(station__stationName=names[idx]).delete()
-        PointSource.objects.get(stationName=names[idx]).delete()
+        # PointSource.objects.get(stationName=names[idx]).delete()
     return JsonResponse(names)
     # return JsonResponse(names)
 

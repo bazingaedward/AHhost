@@ -166,7 +166,6 @@ $(function(){
           console.log('filter operator not found!');
       }
     });
-    console.log(sql.join(' AND '));
     $.ajax({
       type: "POST",
       url: "/data/filter",
@@ -174,14 +173,21 @@ $(function(){
         'sql': sql.join(' AND ')
       },
       success: function(res){
+        console.log(res);
         if(res['status'] == 'OK'){
           filterTable
             .clear()
             .rows.add(res['data'])
             .draw();
-          console.log(res['data']);
-        }
 
+          if(res['total']){
+            var json = $.parseJSON(res['total']);
+
+            $('#dt-statistics tfoot th').slice(2, 10).each(function(index, element){
+              $(element).text(json[(index+2).toString()]);
+            });
+          }
+        }
       },
       fail: function(error){
         console.log('Filter:', error);
@@ -195,6 +201,10 @@ $(function(){
                 "<'row'<'col-sm-12'tr>>",
         "language": {
           "search": "搜索："
+        },
+        fixedHeader: {
+          header: true,
+          footer: true
         }
       });
 });
