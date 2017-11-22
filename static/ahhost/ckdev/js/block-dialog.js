@@ -134,6 +134,7 @@ $(function(){
       ],
       buttonLabels: true,
       submitButton: true,
+      clearButton: true
   });
   $("#myFilter").on("submit.search", function(event){
     var conditions = $("#myFilter").structFilter('val');
