@@ -55,7 +55,7 @@ $(function(){
           success: function (data) {
             $('#shapefile_modal .modal_info').empty();
             $('#shapefile_modal .modal_info').append("<div class=\"alert alert-success\" role=\"alert\">文件生成成功！</div>");
-              console.log(data);
+              // console.log(data);
           },
           fail: function (response) {
               alert('生成矢量图形时发生错误!');
@@ -94,7 +94,7 @@ $(function(){
         $('#raster_modal .modal_info').empty();
         $('#raster_modal .modal_info').append("<div class=\"alert alert-success\" role=\"alert\">计算完成，导出文件！</div>");
         window.open('media/netcdf4/data.nc');
-        console.log(data);
+        // console.log(data);
       },
       fail: function(response){
         alert('计算网格数据时发生错误!');

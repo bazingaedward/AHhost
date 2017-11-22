@@ -230,7 +230,7 @@ $(function() {
         //安徽AH
         lyData.setVisible(true);
         lyData.setSource(new ol.source.Vector({
-          url: '/media/geojson/data.geojson',
+          url: '/data/geojson',
           format: new ol.format.GeoJSON(),
         }));
         break;
@@ -238,6 +238,16 @@ $(function() {
         alert("错误的数据图层选择");
     }
     //update data layer
+    lyData.changed();
+  });
+
+  $('#layerUpdateBtn').click(function(){
+    console.log('layerUpdateBtn clicked');
+    //update data layer
+    lyData.setSource(new ol.source.Vector({
+      url: '/data/geojson',
+      format: new ol.format.GeoJSON(),
+    }));
     lyData.changed();
   });
 });

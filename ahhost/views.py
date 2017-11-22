@@ -10,6 +10,7 @@ from django_pandas.io import read_frame
 from ahhost.Gridding import ShapeFileHandler,NCHandler,RasterHandler
 from pprint import pprint
 import pandas as pd
+import geojson
 
 
 def index(request):
@@ -181,6 +182,16 @@ def data_delete(request):
         # PointSource.objects.get(stationName=names[idx]).delete()
     return JsonResponse(names)
     # return JsonResponse(names)
+
+
+def data_geojson(request):
+    "读取/media/geojson/data.geojson, 并以json数据返回"
+    dataPath = os.path.join(settings.BASE_DIR, 'media', 'geojson','data.geojson')
+    with open(dataPath) as f:
+        data = f.read()
+        return HttpResponse(data, content_type='text/plain')
+    return HttpResponse("Error: file not found[%s]"%dataPath, content_type='text/plain')
+
 
 def shapefile_create(request):
     "get ajax POST request and create shapefile with custom parameters"

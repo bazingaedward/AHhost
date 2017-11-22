@@ -28,6 +28,7 @@ urlpatterns = i18n_patterns(
     url(r'^data/add$', views.data_add),
     url(r'^data/update$', views.data_update),
     url(r'^data/delete$', views.data_delete),
+    url(r'^data/geojson$', views.data_geojson),
     url(r'^form/shapefile$', views.shapefile_create),
     url(r'^form/raster$', views.raster_calculate),
     url(r'^form/upload_file$', views.upload_file),

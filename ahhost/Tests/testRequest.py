@@ -1,7 +1,7 @@
 from django.test import TestCase, RequestFactory
 from ahhost.models import PointSource, PointSourceData
 import datetime as dt
-from ahhost.views import data_add, data_update, data_filter
+from ahhost.views import data_add, data_update, data_filter, data_geojson
 from pprint import pprint
 
 class RequestTestCase(TestCase):
@@ -84,3 +84,10 @@ class RequestTestCase(TestCase):
         df = pd.DataFrame(data)
         total = df[[1,2]].astype(float).sum(numeric_only=True).as_matrix()
         print(total)
+
+    def test_data_geojson(self):
+        factory = RequestFactory()
+        parameters = {}
+        request = factory.post('/data/geojson',parameters)
+        response = data_geojson(request)
+        print(response)
