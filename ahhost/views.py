@@ -82,7 +82,13 @@ def data_filter(request):
     parameters = request.POST
 
     data = []
-    qs = PointSourceData.objects.raw("select * from ahhost_pointsourcedata where %s" %parameters['sql'])
+    qs = PointSourceData.objects.raw(
+        '''
+        select ahhost_pointsourcedata.* from ahhost_pointsourcedata
+        join ahhost_pointsource on
+        ahhost_pointsourcedata.station_id=ahhost_pointsource.stationName
+        where %s
+        ''' %parameters['sql'])
     for record in qs:
         data.append([
             record.station.stationName,

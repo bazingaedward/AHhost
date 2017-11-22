@@ -122,15 +122,15 @@ $(function(){
   }
   $("#myFilter").structFilter({
       fields: [
-          {id:"areaId", type:"text", label:"行政区划代码"},
-          {id:"SO2", type:"number", label:"SO2"},
-          {id:"NOX", type:"number", label:"NOx"},
-          {id:"CO", type:"number", label:"CO"},
-          {id:"PM", type:"number", label:"PM"},
-          {id:"PM10", type:"number", label:"PM10"},
-          {id:"PM25", type:"number", label:"PM2.5"},
-          {id:"NMVOC", type:"number", label:"NMVOC"},
-          {id:"NH3", type:"number", label:"NH3"},
+          {id:"ahhost_pointsource.areaId", type:"text", label:"行政区划代码"},
+          {id:"ahhost_pointsourcedata.SO2", type:"number", label:"SO2"},
+          {id:"ahhost_pointsourcedata.NOX", type:"number", label:"NOx"},
+          {id:"ahhost_pointsourcedata.CO", type:"number", label:"CO"},
+          {id:"ahhost_pointsourcedata.PM", type:"number", label:"PM"},
+          {id:"ahhost_pointsourcedata.PM10", type:"number", label:"PM10"},
+          {id:"ahhost_pointsourcedata.PM25", type:"number", label:"PM2.5"},
+          {id:"ahhost_pointsourcedata.NMVOC", type:"number", label:"NMVOC"},
+          {id:"ahhost_pointsourcedata.NH3", type:"number", label:"NH3"},
       ],
       buttonLabels: true,
       submitButton: true,
@@ -139,18 +139,19 @@ $(function(){
     var conditions = $("#myFilter").structFilter('val');
     var sql = [];
     conditions.forEach(function(item){
+      // areaId
       switch(item['operator']['value']){
         case 'eq':
-          sql.push(item['field']['value']+" = "+item['value']['value']);
+          sql.push(item['field']['value']+"="+item['value']['label']);
           break;
         case 'ne':
-          sql.push(item['field']['value']+" != "+item['value']['value']);
+          sql.push(item['field']['value']+"!="+item['value']['value']);
           break;
         case 'gt':
-          sql.push(item['field']['value']+" > "+item['value']['value']);
+          sql.push(item['field']['value']+">"+item['value']['value']);
           break;
         case 'lt':
-          sql.push(item['field']['value']+" < "+item['value']['value']);
+          sql.push(item['field']['value']+"<"+item['value']['value']);
           break;
         case 'sw': break;
         case 'ct': break;
