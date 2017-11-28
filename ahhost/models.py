@@ -48,5 +48,17 @@ class PointSourceData(models.Model):
     date = models.DateField()
 
 
-class AreaSource(models.Model):
-    pass
+class City(models.Model):
+    "地级市"
+    # ID:统一数字编码，例如：合肥市 340100
+    ID = models.CharField(max_length=50, primary_key=True, unique=True)
+    # name:名称
+    name = models.CharField(max_length=50)
+    # minx: 经度左边界
+    minx = models.FloatField()
+    # miny: 纬度下边界
+    miny = models.FloatField()
+    # maxx: 经度右边界
+    maxx = models.FloatField()
+    # maxy: 纬度上边界
+    maxy = models.FloatField()
