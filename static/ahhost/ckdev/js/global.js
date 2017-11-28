@@ -24,10 +24,10 @@ $(function(){
     }else{
       //class two
       switch ($(this).attr("data-index")) {
-        case "5":
+        case "4":
           $('#help_modal').modal();
           break;
-        case "6":
+        case "5":
           $('#about_modal').modal();
           break;
         default:
