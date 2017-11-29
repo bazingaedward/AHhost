@@ -62,3 +62,16 @@ class City(models.Model):
     maxx = models.FloatField()
     # maxy: 纬度上边界
     maxy = models.FloatField()
+
+class Province(models.Model):
+    "中国省级单位"
+    # name:名称
+    name = models.CharField(max_length=50, primary_key=True, unique=True)
+    # minx: 经度左边界
+    minx = models.FloatField()
+    # miny: 纬度下边界
+    miny = models.FloatField()
+    # maxx: 经度右边界
+    maxx = models.FloatField()
+    # maxy: 纬度上边界
+    maxy = models.FloatField()
