@@ -65,8 +65,10 @@ class City(models.Model):
 
 class Province(models.Model):
     "中国省级单位"
+    # ID:统一数字编码，例如：合肥市 340100
+    ID = models.CharField(max_length=50, primary_key=True, unique=True)
     # name:名称
-    name = models.CharField(max_length=50, primary_key=True, unique=True)
+    name = models.CharField(max_length=50)
     # minx: 经度左边界
     minx = models.FloatField()
     # miny: 纬度下边界

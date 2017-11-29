@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::4030" } },
+"features": [
+{ "type": "Feature", "properties": { "ADMINCODE": "330000", "NAME": "江苏省", "minx": 118.02707496, "miny": 27.045939014999998, "maxx": 123.16000302, "maxy": 31.178812995000001 }, "geometry": null },
+{ "type": "Feature", "properties": { "ADMINCODE": "340000", "NAME": "安徽省", "minx": 114.88326408, "miny": 29.39306301, "maxx": 119.64823506, "maxy": 34.650696015000001 }, "geometry": null },
+{ "type": "Feature", "properties": { "ADMINCODE": "320000", "NAME": "浙江省", "minx": 116.36047206000001, "miny": 30.76052598, "maxx": 122.06302092, "maxy": 35.123962005000003 }, "geometry": null },
+{ "type": "Feature", "properties": { "ADMINCODE": "310000", "NAME": "上海市", "minx": 120.85611696, "miny": 30.68026398, "maxx": 122.24729898, "maxy": 31.86247698 }, "geometry": null }
+]
+}

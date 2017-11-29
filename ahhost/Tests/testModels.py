@@ -1,7 +1,7 @@
 from django.test import TestCase
 from ahhost.models import PointSource, City
 from ahhost.DataHandler import DataHandler
-from ahhost.view.city import saveToORM
+from ahhost.view.province import saveToORM
 import datetime as dt
 
 class PointSourceTestCase(TestCase):
@@ -90,5 +90,9 @@ class PointSourceTestCase(TestCase):
         # dh.saveToDB(df2, 'ahhost.pointsource', exist_action='replace')
 
 class CityTestCase(TestCase):
+    def test_data_import(self):
+        saveToORM('hello')
+
+class ProvinceTestCase(TestCase):
     def test_data_import(self):
         saveToORM('hello')

@@ -10,7 +10,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.static import serve
 from . import views
-from .view import city
+from .view import city, province
 
 # admin.autodiscover()
 
@@ -34,6 +34,7 @@ urlpatterns = i18n_patterns(
     url(r'^form/raster$', views.raster_calculate),
     url(r'^form/upload_file$', views.upload_file),
     url(r'^gis/city/save$', city.saveToORM),
+    url(r'^gis/province/save$', province.saveToORM),
     url(r'^$', views.index),
     # url(r'^', include('cms.urls')),
 )
