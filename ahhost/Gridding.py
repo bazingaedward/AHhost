@@ -10,10 +10,12 @@ from rasterstats import zonal_stats, point_query
 from pprint import pprint
 import netCDF4 as nc
 import geojson
+from ahhost.models import Province, City
 
-LATLONS = {
-    'AH': [28.949517145902025,112.7214002962958,35.06114891777644,121.73919504342172]
-}
+# deprecated global variables
+# LATLONS = {
+#     'AH': [28.949517145902025,112.7214002962958,35.06114891777644,121.73919504342172]
+# }
 
 class ShapeFileHandler:
     """
@@ -91,8 +93,7 @@ class NCHandler:
         return data/np.nansum(data)
 
 
-    def process(self, area, pollution, resolution=0.1):
-        latlon = LATLONS[area]
+    def process(self, latlon, pollution, resolution=0.1):
         self.y = np.arange(latlon[0], latlon[2], resolution)
         self.x = np.arange(latlon[1], latlon[3], resolution)
         # create dimensions

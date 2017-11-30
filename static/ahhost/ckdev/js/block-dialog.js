@@ -10,85 +10,149 @@ $(function(){
 
   });
 
-  // modal for shapefile
-  $('#shapefile_button').click(function(){
-    var rangeIdx = $('#shapefile_modal select').val();
-    var resolution = $('#resolution').val();
-
-    $('#shapefile_modal .modal_info').empty();
-    $('#shapefile_modal .modal_info').append("<div class=\"alert alert-info\" role=\"alert\">正在处理，请稍后...</div>");
-    switch(rangeIdx){
-      //安徽省
-      case "1":
-        var latlon = [28.949517145902025,112.7214002962958,35.06114891777644,121.73919504342172];
-        var location = 'ah';
-        // var latlon = 'test';
-        break;
-      //江苏省
-      case "2":
-        console.log(2);
-        break;
-      //浙江省
-      case "3":
-        console.log(3);
-        break;
-      //上海市
-      case "4":
-        console.log(4);
-        break;
-      default:
-        alert("未知的shapefile范围类型码！");
-    }
-
-    if(latlon){
-      $.ajax({
-          type: 'POST',
-          url: '/form/shapefile',
-          data: {
-            'location':location,
-            'miny': latlon[0],
-            'minx': latlon[1],
-            'maxy': latlon[2],
-            'maxx': latlon[3],
-            'resolution': resolution
-          },
-          success: function (data) {
-            $('#shapefile_modal .modal_info').empty();
-            $('#shapefile_modal .modal_info').append("<div class=\"alert alert-success\" role=\"alert\">文件生成成功！</div>");
-              // console.log(data);
-          },
-          fail: function (response) {
-              alert('生成矢量图形时发生错误!');
-              console.log(response);
-          }
+  // modal for province and city shapefile creation
+  // --- init ----
+  var PROVINCES = [];
+  var CITIES = [];
+  var SELECTRANGE = {};
+  $.ajax({
+      type: 'POST',
+      url: '/gis/province/get',
+      success: function (data) {
+          PROVINCES = $.map(data, function(value){
+            return value;
+          });
+          var elements = $.map(data, function(value){
+          return "<option value=\""+value['ID']+"\">"+value['name']+'</option>';
         });
-    }
+        // province modal select
+        $('#province_shapefile_modal select').html(elements.join(""));
+        //raster area select
+        $('#rasterAreaSelect').html(elements.join(""));
+      },
+      fail: function (err) {
+          console.log(err);
+      }
+    });
+    $.ajax({
+        type: 'POST',
+        url: '/gis/city/get',
+        success: function (data) {
+            CITIES = $.map(data, function(value){
+              return value;
+            });
+            var elements = $.map(data, function(value){
+            return "<option value=\""+value['ID']+"\">"+value['name']+'</option>';
+          });
+          $('#city_shapefile_modal select').html(elements.join(""));
+        },
+        fail: function (err) {
+            console.log(err);
+        }
+      });
+  // --- submit button ----
+  $('#province_shapefile_button').click(function(){
+    var provinceIdx = PROVINCES.findIndex(function(item){
+      return item['ID'] == $('#province_shapefile_modal select').val();
+    });
+    var resolution = $('#province_shapefile_modal .resolution').val();
+    // loading label
+    $('#province_shapefile_modal .modal_info').empty();
+    $('#province_shapefile_modal .modal_info').append("<div class=\"alert alert-info\" \
+    role=\"alert\">正在处理，请稍后...</div>");
+    // register global variable: SELECTRANGE
+    SELECTRANGE = PROVINCES[provinceIdx];
+    // running ajax
+    $.ajax({
+        type: 'POST',
+        url: '/form/shapefile',
+        data: {
+          'miny': PROVINCES[provinceIdx]['miny'],
+          'minx': PROVINCES[provinceIdx]['minx'],
+          'maxy': PROVINCES[provinceIdx]['maxy'],
+          'maxx': PROVINCES[provinceIdx]['maxx'],
+          'resolution': resolution
+        },
+        success: function (data) {
+          // console.log(data);
+          // complete label
+          $('#province_shapefile_modal .modal_info').empty();
+          $('#province_shapefile_modal .modal_info').append("<div class=\"alert alert-success\" role=\"alert\">文件生成成功！</div>");
+        },
+        fail: function (response) {
+            alert('生成矢量图形时发生错误!');
+            console.log(response);
+        }
+      });
+  });
+  $('#city_shapefile_button').click(function(){
+    var cityIdx = CITIES.findIndex(function(item){
+      return item['ID'] == $('#city_shapefile_modal select').val();
+    });
+    var resolution = $('#city_shapefile_modal .resolution').val();
+    // loading label
+    $('#city_shapefile_modal .modal_info').empty();
+    $('#city_shapefile_modal .modal_info').append("<div class=\"alert alert-info\" \
+    role=\"alert\">正在处理，请稍后...</div>");
+    // register global variable: SELECTRANGE
+    SELECTRANGE = CITIES[cityIdx];
+    // running ajax
+    $.ajax({
+        type: 'POST',
+        url: '/form/shapefile',
+        data: {
+          'miny': CITIES[cityIdx]['miny'],
+          'minx': CITIES[cityIdx]['minx'],
+          'maxy': CITIES[cityIdx]['maxy'],
+          'maxx': CITIES[cityIdx]['maxx'],
+          'resolution': resolution
+        },
+        success: function (data) {
+          // console.log(data);
+          // complete label
+          $('#city_shapefile_modal .modal_info').empty();
+          $('#city_shapefile_modal .modal_info').append("<div class=\"alert alert-success\" role=\"alert\">文件生成成功！</div>");
+        },
+        fail: function (response) {
+            alert('生成矢量图形时发生错误!');
+            console.log(response);
+        }
+      });
   });
 
   // modal for Raster Calculate
   $('#calculate_button').click(function(){
-    var rasterArea = $('#rasterAreaSelect').val();
+    //form elements values
+    var provinceIdx = PROVINCES.findIndex(function(item){
+      return item['ID'] == $('#rasterAreaSelect').val();
+    });//!important 省级区域
     var statisticType = $("input[name='st']:checked").val();
     var gridResolution = $('#gridResolutionSelect').val();
     var pollutionType = $('#pollutionTypeSelect').val();
     var pollutionSum = $('#pollutionSumValue').val();
-
+    // check required input
     if(!pollutionSum){
       alert("区域排放总量必须输入!!!");
       return;
     }
-
+    //loading label
     $('#raster_modal .modal_info').empty();
-    $('#raster_modal .modal_info').append("<div class=\"alert alert-info\" role=\"alert\">正在处理，请稍后...</div>");
+    $('#raster_modal .modal_info').append("<div class=\"alert alert-info\" \
+      role=\"alert\">正在处理，请稍后...</div>");
+    // running ajax
     $.ajax({
       url: '/form/raster',
       type: 'POST',
       data: {
-        'Area': rasterArea, //'AH'
+        'AreaID': PROVINCES[provinceIdx]['ID'], //'340100'
         'st'  : statisticType,//'Population'
         'resolution': gridResolution,//'10'
         'type': pollutionType,//'so2'
-        'sum': pollutionSum //'100'
+        'sum': pollutionSum, //'100'
+        'minx': SELECTRANGE['minx'],
+        'miny': SELECTRANGE['miny'],
+        'maxx': SELECTRANGE['maxx'],
+        'maxy': SELECTRANGE['maxy'],
       },
       success: function(data){
         $('#raster_modal .modal_info').empty();

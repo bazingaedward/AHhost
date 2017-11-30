@@ -25,5 +25,11 @@ def saveToORM(request):
                 maxy=item['properties']['maxy']
                 )
             province.save()
-
     return JsonResponse({'status': 'OK'})
+
+def getAll(request):
+    data = {}
+    qs = Province.objects.values()
+    for idx,item in enumerate(qs):
+        data[idx] = item
+    return JsonResponse(data)

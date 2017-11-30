@@ -83,7 +83,7 @@ $(function() {
   var lyGIS = new ol.layer.Vector({
       visible: false,
       source: new ol.source.Vector({
-          url: '/media/geojson/AH.geojson',
+          url: '/media/geojson/provinces/AH.geojson',
           format: new ol.format.GeoJSON(),
 
       }),
@@ -187,7 +187,7 @@ $(function() {
         //安徽AH
         lyGIS.setVisible(true);
         lyGIS.setSource(new ol.source.Vector({
-          url: '/media/geojson/AH.geojson',
+          url: '/media/geojson/provinces/AH.geojson',
           format: new ol.format.GeoJSON(),
         }));
         break;
@@ -195,7 +195,7 @@ $(function() {
         //江苏JS
         lyGIS.setVisible(true);
         lyGIS.setSource(new ol.source.Vector({
-          url: '/media/geojson/JS.geojson',
+          url: '/media/geojson/provinces/JS.geojson',
           format: new ol.format.GeoJSON(),
         }));
         break;
@@ -203,7 +203,7 @@ $(function() {
         //浙江ZJ
         lyGIS.setVisible(true);
         lyGIS.setSource(new ol.source.Vector({
-          url: '/media/geojson/ZJ.geojson',
+          url: '/media/geojson/provinces/ZJ.geojson',
           format: new ol.format.GeoJSON(),
         }));
         break;
@@ -211,7 +211,7 @@ $(function() {
         //上海SH
         lyGIS.setVisible(true);
         lyGIS.setSource(new ol.source.Vector({
-          url: '/media/geojson/SH.geojson',
+          url: '/media/geojson/provinces/SH.geojson',
           format: new ol.format.GeoJSON(),
         }));
         break;

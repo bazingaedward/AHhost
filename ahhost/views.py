@@ -210,7 +210,7 @@ def raster_calculate(request):
     "calculte raster grid based on zonal_stats, then output netCDF4 file"
     parameters = request.POST
     # step 1:zonal_stats and data normalized
-    rasterURL = 'media/{0}/{1}/2010.tif'.format(parameters['st'],parameters['Area'])
+    rasterURL = 'media/{0}/{1}/2010.tif'.format(parameters['st'],parameters['AreaID'])
     vectorURL = 'media/shapefiles/grid.shp'
     rh = RasterHandler(rasterURL, vectorURL)
     rh.process()
@@ -224,7 +224,13 @@ def raster_calculate(request):
         'name': parameters['type'],
         'quantity': float(parameters['sum'])
     }
-    nh.process(parameters['Area'], pollution, resolution)
+    latlon = [
+        float(parameters['miny']),
+        float(parameters['minx']),
+        float(parameters['maxy']),
+        float(parameters['maxx']),
+    ]
+    nh.process(latlon, pollution, resolution)
 
     return JsonResponse({'status': 'OK'})
 

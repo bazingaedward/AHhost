@@ -1,7 +1,8 @@
 from django.test import TestCase, RequestFactory
 from ahhost.models import PointSource, PointSourceData
 import datetime as dt
-from ahhost.views import data_add, data_update, data_filter, data_geojson
+from ahhost.views import data_add, data_update, data_filter, data_geojson, raster_calculate
+from ahhost.view import province
 from pprint import pprint
 
 class RequestTestCase(TestCase):
@@ -90,4 +91,26 @@ class RequestTestCase(TestCase):
         parameters = {}
         request = factory.post('/data/geojson',parameters)
         response = data_geojson(request)
+        print(response)
+
+    def test_gis_province_get(self):
+        factory = RequestFactory()
+        parameters = {}
+        request = factory.post('/gis/province/save',parameters)
+        province.saveToORM(request)
+        request = factory.post('/gis/province/get',parameters)
+        response = province.getAll(request)
+        print(response)
+
+    def raster_calculate(self):
+        factory = RequestFactory()
+        parameters = {
+            'Area': 'AH',
+            'st'  : 'Population',
+            'resolution': '50',
+            'type': 'so2',
+            'sum': '100',
+        }
+        request = factory.post('/form/raster',parameters)
+        response = raster_calculate(request)
         print(response)

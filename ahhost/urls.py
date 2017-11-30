@@ -34,7 +34,9 @@ urlpatterns = i18n_patterns(
     url(r'^form/raster$', views.raster_calculate),
     url(r'^form/upload_file$', views.upload_file),
     url(r'^gis/city/save$', city.saveToORM),
+    url(r'^gis/city/get$', city.getAll),
     url(r'^gis/province/save$', province.saveToORM),
+    url(r'^gis/province/get$', province.getAll),
     url(r'^$', views.index),
     # url(r'^', include('cms.urls')),
 )

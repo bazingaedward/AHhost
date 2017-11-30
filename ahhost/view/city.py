@@ -27,3 +27,10 @@ def saveToORM(request):
             city.save()
 
     return JsonResponse({'status': 'OK'})
+
+def getAll(request):
+    data = {}
+    qs = City.objects.values()
+    for idx,item in enumerate(qs):
+        data[idx] = item
+    return JsonResponse(data)
