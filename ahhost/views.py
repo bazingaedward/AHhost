@@ -253,3 +253,8 @@ def upload_file(request):
     #     form = UploadFileForm()
     # return render(request, 'upload.html', {'form': form})
     # return HttpResponseRedirect('/')
+
+def interpolate(request):
+    parameters = request.POST
+    print(parameters['test'])
+    return JsonResponse({'status': parameters['test']})

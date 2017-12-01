@@ -33,6 +33,7 @@ urlpatterns = i18n_patterns(
     url(r'^form/shapefile$', views.shapefile_create),
     url(r'^form/raster$', views.raster_calculate),
     url(r'^form/upload_file$', views.upload_file),
+    url(r'^form/interpolate$', views.interpolate),
     url(r'^gis/city/save$', city.saveToORM),
     url(r'^gis/city/get$', city.getAll),
     url(r'^gis/province/save$', province.saveToORM),

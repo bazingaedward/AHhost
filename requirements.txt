@@ -30,3 +30,4 @@ rasterstats
 pyshp
 netCDF4
 geojson
+scipy==1.0.0

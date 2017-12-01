@@ -272,4 +272,22 @@ $(function(){
           footer: true
         }
       });
+
+  // interpolation modal
+  $('#interpolation_button').click(function(){
+    $.ajax({
+      type: "POST",
+      url: "/form/interpolate",
+      data: {
+        'test': ['hello', 'world']
+      },
+      processData: false,
+      success: function(data){
+        console.log(data);
+      },
+      fail: function(error){
+        console.log('Filter:', error);
+      }
+    })
+  });
 });
