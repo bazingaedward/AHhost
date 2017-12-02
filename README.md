@@ -4,11 +4,47 @@ A Django-based WebGIS web app for data Visualization and Manipulation
 
 ---
 
-## Features
-
 ## Demos
+![screenshot](https://github.com/bazingaedward/AHhost/blob/master/screenshot.png)
+
+## Features
+- modular design
+- openlayer webgis framework
+- 100% finished AJAX example
 
 ## Quick Start
+- 1. download source code
+
+```
+git clone git@github.com:bazingaedward/AHhost.git
+```
+
+- 2. Prepare docker images with nginx and python3.4
+```
+# run images with file volumn mount
+docker run -it <imageName> -v ...
+# get container id
+docker ps -a
+# start container
+docker start <containerID>
+# attach container with root
+docker attach <containerID>
+```
+
+- 3. pip install requirement
+
+```
+pip install -r requirements.txt
+git clone git@github.com:bazingaedward/AHhost.git
+cd AHhost
+./startsrv
+```
+
+- 4. start server
+
+```
+./startsrv
+```
 
 ## Tech Stacks:
 - [structFilter](https://github.com/evoluteur/structured-filter)
