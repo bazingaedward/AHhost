@@ -10,7 +10,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.static import serve
 from . import views
-from .view import city, province
+from .view import city, province, data
 
 # admin.autodiscover()
 
@@ -20,16 +20,14 @@ from .view import city, province
 # ]
 
 urlpatterns = i18n_patterns(
-    # url(r'^filer/', include('filer.urls')),
-
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^data/load$', views.data_load),
-    url(r'^data/import$', views.data_import),
-    url(r'^data/filter$', views.data_filter),
-    url(r'^data/add$', views.data_add),
-    url(r'^data/update$', views.data_update),
-    url(r'^data/delete$', views.data_delete),
-    url(r'^data/geojson$', views.data_geojson),
+    url(r'^data/load$', data.data_load),
+    url(r'^data/import$', data.data_import),
+    url(r'^data/filter$', data.data_filter),
+    url(r'^data/add$', data.data_add),
+    url(r'^data/update$', data.data_update),
+    url(r'^data/delete$', data.data_delete),
+    url(r'^data/geojson$', data.data_geojson),
     url(r'^form/shapefile$', views.shapefile_create),
     url(r'^form/raster$', views.raster_calculate),
     url(r'^form/upload_file$', views.upload_file),

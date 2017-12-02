@@ -1,8 +1,8 @@
 from django.test import TestCase, RequestFactory
 from ahhost.models import PointSource, PointSourceData
 import datetime as dt
-from ahhost.views import data_add, data_update, data_filter, data_geojson, raster_calculate
-from ahhost.views import interpolate
+from ahhost.view.data import data_add, data_update, data_filter, data_geojson
+from ahhost.views import raster_calculate, interpolate
 from ahhost.view import province
 from pprint import pprint
 
@@ -118,9 +118,10 @@ class RequestTestCase(TestCase):
 
     def interpolate(self):
         factory = RequestFactory()
-        test = [1,2,3]
         parameters = {
-            'test':test
+            'var':'["SO2", "NOX"]',
+            'resolution': 100,
+            'method': 'linear'
         }
         request = factory.post('/form/interpolate',parameters)
         response = interpolate(request)

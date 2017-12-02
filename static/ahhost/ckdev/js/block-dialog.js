@@ -275,18 +275,34 @@ $(function(){
 
   // interpolation modal
   $('#interpolation_button').click(function(){
+    // get form elements values
+    var variables = $('input[name=variables]:checked').map(function(){
+      return this.value;
+    }).toArray();
+    var method = $('#interpolation_modal select.method').val();
+    var resolution = $('#interpolation_modal select.resolution').val();
+    //loading label
+    $('#interpolation_modal .modal_info').empty();
+    $('#interpolation_modal .modal_info').append("<div class=\"alert alert-info\" \
+      role=\"alert\">正在插值，请稍后...</div>");
+    //running ajax
     $.ajax({
       type: "POST",
       url: "/form/interpolate",
       data: {
-        'test': ['hello', 'world']
+        'var': JSON.stringify(variables),
+        'method': method,
+        'resolution': resolution
       },
-      processData: false,
       success: function(data){
-        console.log(data);
+        $('#interpolation_modal .modal_info').empty();
+        $('#interpolation_modal .modal_info').append(
+          "<div class=\"alert alert-success\" role=\"alert\">计算完成，导出文件！</div>");
+        // console.log(data);
+        window.open('media/netcdf4/Interpolate.nc');
       },
       fail: function(error){
-        console.log('Filter:', error);
+        console.log('hello');
       }
     })
   });

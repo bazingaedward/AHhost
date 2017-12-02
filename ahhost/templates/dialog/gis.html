@@ -151,7 +151,60 @@
       <div class="modal-body">
         <div class="modal_info"></div>
         <form>
-
+          <!-- variables -->
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">选择插值的变量：</label>
+            <div class="col-sm-2">
+              <input type="checkbox" id="so2" name="variables" value="SO2">
+              <label for="so2">SO2</label>
+            </div>
+            <div class="col-sm-2">
+              <input type="checkbox" id="nox" name="variables" value="NOX">
+              <label for="nox">NOX</label>
+            </div>
+            <div class="col-sm-2">
+              <input type="checkbox" id="co" name="variables" value="CO">
+              <label for="co">CO</label>
+            </div>
+            <div class="col-sm-2">
+              <input type="checkbox" id="pm" name="variables" value="PM">
+              <label for="pm">PM</label>
+            </div>
+            <div class="col-sm-2 col-sm-offset-3">
+              <input type="checkbox" id="pm10" name="variables" value="PM10">
+              <label for="pm10">PM10</label>
+            </div>
+            <div class="col-sm-2">
+              <input type="checkbox" id="pm25" name="variables" value="PM25">
+              <label for="pm25">PM25</label>
+            </div>
+            <div class="col-sm-2">
+              <input type="checkbox" id="nmvoc" name="variables" value="NMVOC">
+              <label for="nmvoc">NMVOC</label>
+            </div>
+            <div class="col-sm-2">
+              <input type="checkbox" id="nh3" name="variables" value="NH3">
+              <label for="nh3">NH3</label>
+            </div>
+          </div>
+          <!-- method -->
+          <div class="form-group row">
+            <label for="method" class="col-sm-3 col-form-label">插值方法:</label>
+            <select class="method col-sm-4">
+              <option value="linear">Linear线性插值</option>
+              <option value="nearest">Nearest临近插值</option>
+              <option value="cubic">Cubic插值</option>
+            </select>
+          </div>
+          <!-- resolution -->
+          <div class="form-group row">
+            <label for="resolution" class="col-sm-3 col-form-label">插值网格分辨率:</label>
+            <select class="resolution col-sm-4">
+              <option value="100">1度 x 1度</option>
+              <option value="50">0.5度 x 0.5度</option>
+              <option value="10">0.1度 x 0.1度</option>
+            </select>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
