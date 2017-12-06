@@ -81,15 +81,234 @@
 
 <!-- help modal:系统帮助 -->
 <div id="help_modal" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>系统帮助</h3>
       </div>
       <div class="modal-body">
-        <div class="modal_info">
-            hello world
+        <div class="modal_info"></div>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#intro" aria-expanded="true" aria-controls="collapseOne">
+                  系统简介
+                </a>
+              </h4>
+            </div>
+            <div id="intro" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                《安徽省减排评估管理系统》针对安徽省环科院的点源排放数据提供数据管理、分析、GIS网格化功能，并基于WebGIS实现基本的可视化服务。
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+              <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#interface" aria-expanded="false" aria-controls="collapseTwo">
+                  系统界面
+                </a>
+              </h4>
+            </div>
+            <div id="interface" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="panel-body">
+                <div class="row">
+                  <img class="col-md-8" src="/media/docs/interface.png">
+                  <div class="col-md-4">
+                    <h5>界面共5部分组成：</h5>
+                    <ul>
+                      <li><strong>系统名称</strong>：显示系统名称信息</li>
+                      <li><strong>主菜单栏</strong>：包括排放源数据库、GIS网格、数据绘图、系统帮助、关于，其中前两个是主要的功能模块</li>
+                      <li><strong>模块侧边栏</strong>：系统将多个子功能独立拆分成多个模块，放置在侧边栏中。用户点击主菜单栏的按钮会自动更新相关的模块</li>
+                      <li><strong>底边信息栏</strong>：鼠标移动到地图范围内时显示鼠标的经纬度信息，精确到小数点后4位</li>
+                      <li><strong>公司信息</strong>：显示公司信息</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingThree">
+              <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#help-data" aria-expanded="false" aria-controls="collapseThree">
+                  数据管理及分析
+                </a>
+              </h4>
+            </div>
+            <div id="help-data" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+              <div class="panel-body">
+                <div class="row">
+                  <img class="icon col-md-1" src="/media/docs/setting.png">
+                  <img class="screenshot col-md-6" src="/media/docs/setting-in.png">
+                  <div class="text col-md-5">
+                    <p>
+                      全局的WebGIS地图选择，其中默认是谷歌地图。
+                      正如提示给出的一样，地图服务只有联网才可以使用，并且不同的选项加载速度略有不同。
+                      <strong>使用方法：</strong>选择相应的地图后单击右下方的“更新按钮”，地图会在几秒钟后自动更新
+                    </p>
+                    <ul>
+                      <li><strong>谷歌地图</strong>：默认选项</li>
+                      <li><strong>OpenStreet</strong></li>
+                      <li><strong>百度地图</strong></li>
+                      <li><strong>雅虎地图</strong></li>
+                      <li><strong>高德地图</strong></li>
+                      <li><strong>Bing必应</strong></li>
+                    </ul>
+                  </div>
+                </div>
+                <hr/>
+                <div class="row">
+                  <img class="icon col-md-1" src="/media/docs/file.png">
+                  <div class="screenshot col-md-6"></div>
+                  <div class="text col-md-5">
+                    <p>
+                      服务器文件管理，默认禁用！
+                    </p>
+                  </div>
+                </div>
+                <hr/>
+                <div class="row">
+                  <img class="icon col-md-1" src="/media/docs/layer.png">
+                  <img class="screenshot col-md-6" src="/media/docs/layer-in.png">
+                  <div class="text col-md-5">
+                    <p>
+                      打开或关闭相关的图层，共有2个，gis图层显示区域的行政边界，例如安徽省；
+                      数据图层针对“GIS网格化”后的产出数据，每当计算出新的值后，可以通过“更新”按钮查看。
+                      <strong>使用方法：</strong>默认所有图层隐藏，用户完成设置后单击右下角的“确定”按钮
+                      完成设置。
+                    </p>
+                  </div>
+                </div>
+                <hr/>
+                <div class="row">
+                  <img class="icon col-md-1" src="/media/docs/import.png">
+                  <div class="col-md-6">
+                    <img class="screenshot col-md-12" src="/media/docs/import-in.png">
+                  </div>
+                  <div class="text col-md-5">
+                    <p>
+                      该模块可以批量导入相关的点源Excel数据，但对于格式和顺序有着严格的要求，
+                      错误的Excel编排会导致读取数据的错误，因此需要谨慎核对名称及顺序。例子
+                      数据可以<a href="/media/excel/data.xlsx">点击下载</a>数据模版。<br>
+                      <strong>使用方法：</strong>
+                    </p>
+                    <ul>
+                      <li><strong>选择文件</strong>：将准备导入的Excel数据找到，格式必须与数据模版一致</li>
+                      <li><strong>数据统计日期</strong>：因为数据具有统计的时间性，因此需要标志出文件中的数据
+                        对应于哪个时间段内的数据。日期格式是"年－月－日",例如是2016年的数据，则可以输入"2016-12-31"</li>
+                    </ul>
+                    <p>上述内容完成后单击左下角的“上传”按钮完成数据的批量导入。（导入的数据可以在数据列表中查看）
+                  </div>
+                  <img class="screenshot col-md-12" src="/media/docs/import-standard.png">
+                </div>
+                <hr/>
+                <div class="row">
+                  <img class="icon col-md-1" src="/media/docs/table.png">
+                  <img class="screenshot col-md-6" src="/media/docs/table-in.png">
+                  <div class="text col-md-5">
+                    <p>
+                      <strong>排放源数据管理模块</strong>：属于系统核心的功能之一，支持数据的增删改查功能，
+                      方便导出成CSV或是EXCEL格式。强大的检索功能实现实时查询
+                    </p>
+                    <ul>按钮操作：
+                      <li><strong>更新</strong>：数据修改后单击以刷新数据库中数据</li>
+                      <li><strong>新增</strong>：手动添加数据内容，适合小数据量的增加，数据量大的建议从Excel导入</li>
+                      <li><strong>编辑</strong>：针对数据进行修改，先点击选中某数据行，则“编辑”按钮高亮表示可以使用，编辑完后点击
+                        最下方的“提交”按钮完成修改</li>
+                      <li><strong>删除</strong>：操作与“编辑”类似，先选中数据行，然后点击删除；也可结合右边的“全选”批量删除</li>
+                      <li><strong>全选</strong>：选择下表中的所有数据行，注意如果是多页的情况下只能选中当前页的所有数据</li>
+                      <li><strong>取消选择</strong>：取消选择</li>
+                      <li><strong>CSV导出</strong>：以CSV格式导出，即逗号分隔</li>
+                      <li><strong>Excel导出</strong>：以Excel格式导出</li>
+                    </ul>
+                  </div>
+                </div>
+                <hr/>
+                <div class="row">
+                  <img class="icon col-md-1" src="/media/docs/analysis.png">
+                  <img class="screenshot col-md-6" src="/media/docs/analysis-in.png">
+                  <div class="text col-md-5">
+                    <p>
+                      数据的统计分析模块，用户可以自定义过滤数据的条件，一个或多个都可以，系统将自动列出满足过滤条件的
+                      所有数据，并对相关数据进行汇总求和，显示在最下方的“总计”中。
+                      <strong>使用方法：</strong>点击“新增条件”，可以设计行政区划代码和所有的监测数据类型，点击提交后
+                      系统自动计算结果并返回到下面的表中，支持搜索和排序。
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingFour">
+              <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#help-gis" aria-expanded="false" aria-controls="collapseFour">
+                  GIS网格化
+                </a>
+              </h4>
+            </div>
+            <div id="help-gis" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+              <div class="panel-body">
+                <div class="row">
+                  <img class="icon col-md-1" src="/media/docs/grid.png">
+                  <div class="screenshot col-md-6">
+                    <img class="col-md-12" src="/media/docs/grid-in1.png">
+                    <img class="col-md-12" src="/media/docs/grid-in2.png">
+                  </div>
+                  <div class="text col-md-5">
+                    <p>
+                      GIS数据网格化模块（功能是基于人口或GDP在区域的分布情况将面源的总量值按百分比分配到每个网格中）
+                      共分两步，第一步就是当前的生成统计网格，需要指定网格的区域（是省还是市，所以单独存在两个模块）和划分
+                      网格的精度。<br>
+                      <strong>使用方法：</strong>选择是省级区域模块，还是市级区域模块，然后输入相应的网格精度，单击右下角
+                      的“生成”按钮完成，在完成后会有提示信息。值得注意的是为了加快计算速度，对网格精度做了一定的限制，省级范围
+                      区域精度在0.1度以上，最大为1度；市级区域精度在0.01度～0.1度之间。
+                    </p>
+                  </div>
+                </div>
+                <hr/>
+                <div class="row">
+                  <img class="icon col-md-1" src="/media/docs/zonal.png">
+                  <img class="screenshot col-md-6" src="/media/docs/zonal-in.png">
+                  <div class="text col-md-5">
+                    <p>
+                      GIS网格化的第二步，也是最后一步，完成以下的参数设置后单击右下角的“计算”
+                      按钮完成计算，会产生中间结果data.geojson，而这个可以在图层中显示；另外
+                      会以NetCDF4格式自动导出，如果没发现导出，可能是浏览器关闭了自动弹窗功能，
+                      一般会有提示，只要允许即可。
+                    </p>
+                    <ul>参数设置：
+                      <li><strong>Raster区域</strong>：在长三角三省一市中选择，但暂时只有安徽省有实际数据</li>
+                      <li><strong>统计类别</strong>：基于人口数据或是基于GDP数据</li>
+                      <li><strong>网格分辨率</strong>：一共5挡，1度、0.5度、0.1度、0.05度、0.01度</li>
+                      <li><strong>污染物类别</strong>：SO2，NOX...等中选择一个</li>
+                      <li><strong>区域排放总量</strong>：必填项，需要计算的总量</li>
+                    </ul>
+                  </div>
+                </div>
+                <hr/>
+                <div class="row">
+                  <img class="icon col-md-1" src="/media/docs/interpolate.png">
+                  <img class="screenshot col-md-6" src="/media/docs/interpolate-in.png">
+                  <div class="text col-md-5">
+                    <p>
+                      插值模块：针对安徽省境内的点源数据，用户可以选择一个或多个变量，插值完的
+                      结果还是会以NetCDF4格式自动导出。
+                      <strong>使用方法：</strong>完成以下设置后单击右下角的“开始插值”按钮完成。
+                    </p>
+                    <ul>参数设置：
+                      <li><strong>Raster区域</strong>：在长三角三省一市中选择，但暂时只有安徽省有实际数据</li>
+                      <li><strong>插值方法</strong>：一共三种["linear线性插值"，“Nearest临近插值”,"Cubic插值"]</li>
+                      <li><strong>插值网格分辨率</strong>：一共3挡，1度、0.5度、0.1度</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
