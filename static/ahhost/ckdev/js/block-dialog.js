@@ -306,7 +306,4 @@ $(function(){
       }
     })
   });
-
-  // help modal
-  $('#tab-help').tab()
 });
