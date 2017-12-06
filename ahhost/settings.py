@@ -28,10 +28,7 @@ SECRET_KEY = 'qmr(o^(h5lf254x_3o#50hod-*j-5c!#4tf9*(+9cl)5j!ry@n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    '192.168.1.101'
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

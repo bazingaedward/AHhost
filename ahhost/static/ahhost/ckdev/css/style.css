@@ -15,10 +15,6 @@
   flex-direction: column;
 }
 
-/*.content {
-  min-height: 100%;
-}*/
-
 .banner .navbar {
   margin-bottom: 0;
 }
@@ -37,22 +33,6 @@
   height: 90%;
   background-color: white;
   top: 5%;
-}
-
-#shapefile_modal{
-  width: 50%;
-  height: 60%;
-  left: 25%;
-  background-color: white;
-  top: 10%;
-}
-
-#raster_modal{
-  width: 50%;
-  height: 60%;
-  left: 25%;
-  background-color: white;
-  top: 10%;
 }
 
 #datatable {
@@ -77,4 +57,14 @@
 
 .thumbnail {
   margin-bottom: 40px;
+}
+
+.copyright {
+  float: right;
+  color: grey;
+  font-size: small;
+}
+
+#dt-statistics {
+  text-align: left;
 }

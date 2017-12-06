@@ -242,12 +242,18 @@ $(function() {
   });
 
   $('#layerUpdateBtn').click(function(){
-    console.log('layerUpdateBtn clicked');
+    // console.log('layerUpdateBtn clicked');
     //update data layer
     lyData.setSource(new ol.source.Vector({
       url: '/data/geojson',
       format: new ol.format.GeoJSON(),
     }));
     lyData.changed();
+  });
+
+  $('#setting_button').click(function(){
+    // console.log($('#setting_modal select').val());
+    lyRaster.setSource(MapSources[$('#setting_modal select').val()])
+    lyRaster.changed();
   });
 });

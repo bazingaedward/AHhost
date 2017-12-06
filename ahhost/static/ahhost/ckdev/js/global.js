@@ -14,11 +14,27 @@ $(function(){
     $(this).addClass("active");
     if($(this).hasClass("one")){
       //class one
-      $('div.left-side').load("template/block-left-sidebar-" + $(this).attr("data-index") + ".html");
+      $('div.left-side').load(
+        "template/block-left-sidebar-" + $(this).attr("data-index") + ".html",
+        function (){
+          $('[data-toggle="tooltip"]').tooltip();
+        }
+      );
+
     }else{
       //class two
-
+      switch ($(this).attr("data-index")) {
+        case "4":
+          $('#help_modal').modal();
+          break;
+        case "5":
+          $('#about_modal').modal();
+          break;
+        default:
+          alert("Global.js Error:未找到modal");
+      }
     }
-    //Todo: tooltip update
   });
+
+
 });

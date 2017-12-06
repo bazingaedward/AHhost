@@ -8,12 +8,25 @@
       </div>
       <div class="modal-body">
         <div class="modal_info">
-            hello world
+          <div class="alert alert-info" role="alert">
+            地图服务需要访问外网，请确保网络正常联通！
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="gridSelect">地图服务商:</label>
+          <select class="custom-select mb-2 mr-sm-2 col-sm-4">
+            <option value="google">谷歌地图</option>
+            <option value="openstreetmap">OpenStreet</option>
+            <option value="Baidu">百度地图</option>
+            <option value="Yahoo">雅虎地图</option>
+            <option value="GaoDe">高德地图</option>
+            <option value="Bing_cn">Bing必应</option>
+          </select>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" id="save_button">保存</button>
+        <button type="button" class="btn btn-primary" id="setting_button">更新</button>
       </div>
     </div>
   </div>
